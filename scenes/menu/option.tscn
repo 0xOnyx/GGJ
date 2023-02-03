@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/menu/menu_script/option.gd" type="Script" id=1]
+
+[node name="option" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 960.0 ]
+}
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 981.0
+margin_top = 650.0
+margin_right = 1514.0
+margin_bottom = 697.0
+value = 100.0
+rounded = true
+
+[node name="Label" type="Label" parent="HSlider"]
+margin_left = 4.0
+margin_top = -22.0
+margin_right = 391.0
+margin_bottom = -6.0
+text = "Volume"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 749.0
+margin_top = 853.0
+margin_right = 1171.0
+margin_bottom = 968.0
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
