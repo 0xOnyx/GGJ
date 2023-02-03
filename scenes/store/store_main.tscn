@@ -1,9 +1,77 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/store/DELETE_ASSETS_TEMPO.png" type="Texture" id=1]
 [ext_resource path="res://scenes/store/store_main.gd" type="Script" id=2]
 
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("but_confirm:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 71, 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("but_confirm:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("but_confirm:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "confirm_appear"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("but_confirm:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("but_confirm:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="store_main" type="Node2D"]
+position = Vector2( 400, 400 )
 script = ExtResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -46,9 +114,13 @@ text = "Arbre 3"
 [node name="but_confirm" type="Button" parent="."]
 margin_left = -151.0
 margin_top = 190.0
-margin_right = 146.0
-margin_bottom = 248.0
+margin_right = -80.0
+margin_bottom = 210.0
 text = "confirm ?"
+
+[node name="animplay" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/confirm_appear = SubResource( 2 )
 
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/but_tree1" to="." method="_on_but_tree1_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/but_tree2" to="." method="_on_but_tree2_pressed"]
