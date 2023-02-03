@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://Tree.gd\"
+
+
+
+func _ready():
+	pass # Replace with function body.
+"
+
+[node name="Sword_tree" type="Node2D"]
+script = SubResource( 1 )
