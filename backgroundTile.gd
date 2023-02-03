@@ -8,11 +8,11 @@ func _ready():
 func set_tileset_background():
 	var tileset
 	if current_level == 1:
-		tileset = load("res://tilesets/tileset_level_1.tres")
+		tileset = load("res://assets/basic-platformer-tileset.png")
 	elif current_level == 2:
-		tileset = load("res://tilesets/tileset_level_2.tres")
+		tileset = load("res://assets/basic-platformer-tileset.png")
 	else:
-		tileset = load("res://tilesets/default_tileset.tres")
+		tileset = load("res://assets/basic-platformer-tileset.png")
 		
 	var tile_width = tileset.get_tile_width()
 	var tile_height = tileset.get_tile_height()
