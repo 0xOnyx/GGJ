@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/menu/menu_script/menu_start.gd" type="Script" id=1]
+[ext_resource path="res://scenes/menu/option.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "show_hide_option"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.189465, 3.86374 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -1920, 0 ) ]
+}
+
+[node name="menu_start" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 960.0 ]
+}
+
+[node name="but_start" type="Button" parent="."]
+margin_left = 802.0
+margin_top = 602.0
+margin_right = 1118.0
+margin_bottom = 706.0
+text = "Play"
+icon_align = 1
+
+[node name="but_option" type="Button" parent="."]
+margin_left = 802.0
+margin_top = 732.0
+margin_right = 1118.0
+margin_bottom = 836.0
+text = "option"
+icon_align = 1
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/show_hide_option = SubResource( 2 )
+
+[node name="option" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1920, 0 )
+
+[connection signal="pressed" from="but_start" to="." method="_on_but_start_pressed"]
+[connection signal="pressed" from="but_option" to="." method="_on_but_option_pressed"]
