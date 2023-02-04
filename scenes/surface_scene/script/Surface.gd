@@ -43,6 +43,7 @@ func _ready():
 	instance.position.y = floor_level
 	instance.init_bomb(2,50)
 	connect("enemy_killed", instance, "_on_Enemy_Killed")	
+
 	add_child(instance)
 	launch()
 	pass
