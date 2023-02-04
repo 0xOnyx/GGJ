@@ -22,7 +22,8 @@ func _physics_process(delta):
 	rotation += rotation_dir * rotation_speed * delta
 	rotation = clamp(rotation, -PI+rot_limit, -rot_limit)
 	velocity = move_and_slide(velocity)
-
+	$N/Path.set_point_position($N/Path.get_point_count(), position)
+	
 func _on_PathPointTimer_timeout():
 #	print("appended", position)
 	$N/Path.add_point(position)

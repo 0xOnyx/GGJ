@@ -1,19 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/root.gd" type="Script" id=1]
 [ext_resource path="res://assets/root/root_tip_final.png" type="Texture" id=2]
 [ext_resource path="res://assets/root/root_tree_final.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 5.0
-height = 18.0
+radius = 3.99996
+height = 6.00007
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.969974 ), 0.0, 0.0, 0, 0, Vector2( 0.336301, 0.729765 ), 0.0, 0.0, 0, 0, Vector2( 0.878767, 0.63577 ), -0.370613, -0.370613, 0, 0, Vector2( 1, 0.165796 ), 0.0, 0.0, 0, 0 ]
 
 [node name="Root" type="KinematicBody2D"]
 rotation = -1.5708
 script = ExtResource( 1 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( -10, 0 )
+position = Vector2( 4, 5.17368e-05 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
@@ -32,6 +35,8 @@ wait_time = 0.05
 autostart = true
 
 [node name="Path" type="Line2D" parent="N"]
+width = 20.0
+width_curve = SubResource( 2 )
 default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 3 )
 texture_mode = 1
