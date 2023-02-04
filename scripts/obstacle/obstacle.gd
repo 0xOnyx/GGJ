@@ -4,7 +4,7 @@ var pics = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("loaded obstacle sprites")
+#	print("loaded obstacle sprites")
 	var path = "res://assets/obstacles/"
 	var dir = Directory.new()
 	dir.open(path)

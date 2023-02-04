@@ -5,7 +5,7 @@ var pics = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("loaded collectable sprites")
+#	print("loaded collectable sprites")
 	var path = "res://assets/collectables/"
 	var dir = Directory.new()
 	dir.open(path)
