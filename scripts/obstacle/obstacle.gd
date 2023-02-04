@@ -3,13 +3,8 @@ extends StaticBody2D
 var pics = []
 
 func create(biome):
-	pass
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-#	print("loaded obstacle sprites")
-	var path = "res://assets/obstacles/"
+	#	print("loaded obstacle sprites")
+	var path = "res://assets/obstacles/" + String(biome)
 	var dir = Directory.new()
 	dir.open(path)
 	dir.list_dir_begin()
@@ -30,3 +25,8 @@ func _ready():
 	$CollisionShape2D.set_deferred("shape", shape)
 #	$CollisionShape2D.set_shape(shape)
 	$Sprite.set_rotation_degrees(rand_range(0, 180))
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass

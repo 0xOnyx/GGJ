@@ -81,38 +81,42 @@ func _on_Area2D_body_entered(body):
 		var default_size = Vector2(size, size)
 		var size_transition
 		print(last.y)
-		if last.y > ( size * 2 ) + size_none:
-			texture = create_texture("res://assets/tiles/tiile_base_rock.png")
-<<<<<<< HEAD
-			load_image_to_tilemap(texture, default_size, last )
-=======
-			load_image_to_tilemap(texture, default_size, last, 1 )
->>>>>>> 17-add-biome
+		
+		if last.y > ( size * 3 ) + size_none:
+			texture = create_texture("res://assets/tiles/magma.png")
+			load_image_to_tilemap(texture, default_size, last, 2 )
 			last.y += size
-		elif last.y >= size * 2 :
-			texture = create_texture("res://assets/tiles/tile_transition.png")
+		elif last.y >= size * 3 :
+			texture = create_texture("res://assets/tiles/magma-transition.png")
 			default_size = Vector2(size, size_none)
-<<<<<<< HEAD
-			load_image_to_tilemap(texture, default_size, last )
-			texture = create_texture("res://assets/tiles/tiile_base_rock.png")
+
+			load_image_to_tilemap(texture, default_size, last, 1)
+			texture = create_texture("res://assets/tiles/magma.png")
 			default_size = Vector2(size, size_none * 2)
 			last.y += size_none
-			load_image_to_tilemap(texture, default_size, last )
+			load_image_to_tilemap(texture, default_size, last, 2 )
 			last.y += size_none * 2
-		else :
-			texture = create_texture("res://assets/tiles/tiile_base.png")
-			load_image_to_tilemap(texture, default_size, last )
-=======
+		elif last.y > ( size * 2 ) + size_none:
+			texture = create_texture("res://assets/tiles/tiile_base_rock.png")
+			load_image_to_tilemap(texture, default_size, last, 1 )
+			last.y += size
+		elif last.y >= size * 2 && last.y < ( size * 3 ) + size_none:
+			texture = create_texture("res://assets/tiles/tile_transition.png")
+			default_size = Vector2(size, size_none)
+
 			load_image_to_tilemap(texture, default_size, last, 0)
 			texture = create_texture("res://assets/tiles/tiile_base_rock.png")
 			default_size = Vector2(size, size_none * 2)
 			last.y += size_none
 			load_image_to_tilemap(texture, default_size, last, 1 )
 			last.y += size_none * 2
+			
+
+
 		else :
 			texture = create_texture("res://assets/tiles/tiile_base.png")
 			load_image_to_tilemap(texture, default_size, last , 0)
->>>>>>> 17-add-biome
+
 			last.y += size
 		$Area2D/CollisionShape2D.set_shape(shape)
 		$Area2D.set_position(Vector2(size / 2, last.y - (size / 2)))

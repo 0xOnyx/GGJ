@@ -5,8 +5,8 @@
 [ext_resource path="res://assets/root/root_tree_final.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 3.99996
-height = 6.00007
+radius = 5.0
+height = 18.0
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0.969974 ), 0.0, 0.0, 0, 0, Vector2( 0.336301, 0.729765 ), 0.0, 0.0, 0, 0, Vector2( 0.878767, 0.63577 ), -0.370613, -0.370613, 0, 0, Vector2( 1, 0.165796 ), 0.0, 0.0, 0, 0 ]

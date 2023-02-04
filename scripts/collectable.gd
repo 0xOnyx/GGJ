@@ -4,12 +4,8 @@ extends Area2D
 var pics = []
 
 func create(biome):
-	pass
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-#	print("loaded collectable sprites")
-	var path = "res://assets/collectables/"
+	#	print("loaded collectable sprites")
+	var path = "res://assets/collectables/" + String(biome)
 	var dir = Directory.new()
 	dir.open(path)
 	dir.list_dir_begin()
@@ -20,7 +16,7 @@ func _ready():
 			break
 		elif !file_name.begins_with(".") and !file_name.ends_with(".import"):
 			#if !file_name.ends_with(".import"):
-			pics.append(load(path + "/" + file_name))
+			pics.append(load(path + "/"  + file_name))
 	dir.list_dir_end()
 	
 	$Sprite.set_texture(pics[rand_range(0, pics.size())])
@@ -29,6 +25,10 @@ func _ready():
 #	var collision = CollisionShape2D.new()
 	$CollisionShape2D.set_deferred("shape", shape)
 	$Sprite.set_rotation_degrees(rand_range(0, 180))
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
 	
 
 func _on_Collectable_body_entered(body):
