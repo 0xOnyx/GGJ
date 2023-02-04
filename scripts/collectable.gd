@@ -20,3 +20,5 @@ func _on_Collectable_body_entered(body):
 
 func _on_DeathparticlesTimer_timeout():
 	queue_free()
+
+
