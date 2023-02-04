@@ -14,7 +14,7 @@ func _ready():
 	noise.persistence = 0.8
 #	set_tileset_map()
 	var texture = create_texture("res://assets/tiile_base.png")
-	var tilemap = load_image_to_tilemap(texture, Vector2(200, 200))
+	var tilemap = load_image_to_tilemap(texture, Vector2(1000, 2000))
 	#add_child(tilemap)
 
 func create_texture(path_img):
@@ -35,11 +35,10 @@ func load_image_to_tilemap(texture, size):
 	# Boucle pour remplir le tileMap avec la taille définie
 	for x in range(0, size.x, texture.autotile_get_size(1).x):
 		for y in range(0, size.y, texture.autotile_get_size(1).y):
-			for x_x in range(0, x):
-				for y_y in range(0, y):
+			for x_x in range(0, x, 10):
+				for y_y in range(0, y, 10):
 					var noise_res = noise.get_noise_2d(x_x, y_y)
-					if (noise_res >= 0.6):
-						print(noise_res)
+					if (noise_res >= 0.5):
 						collect_tmp = Collectable.instance()
 						collect_tmp.set_position(Vector2(x_x, y_y))
 						add_child(collect_tmp)
