@@ -30,10 +30,19 @@ func _unpress():
 	$animplay.play_backwards("confirm_appear")
 
 func _on_but_confirm_pressed():
+	var posx_to_send = get_parent().position.x
 	connect("sig_tree_selected", get_parent().get_parent().get_node("Surface"), "_on_sig_tree_recieved")
-	emit_signal("sig_tree_selected", selected_tree, global_position.x)
+	if posx_to_send < 960:
+		posx_to_send = 960 - posx_to_send
+		posx_to_send *= -1
+	else:
+		posx_to_send -= 960
+	posx_to_send /= 4
+
+	emit_signal("sig_tree_selected", selected_tree, posx_to_send)
 	$animplay.play_backwards("appear")
 	$animplay/Timer.start()
+	get_parent().queue_free()
 
 #Les anims play c'est pour quand ce sera bon pour faire jolie
 
