@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/menu/menu_script/menu_start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/option.tscn" type="PackedScene" id=2]
+[ext_resource path="res://button_theme.tres" type="Theme" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -45,6 +46,7 @@ margin_left = 802.0
 margin_top = 602.0
 margin_right = 1118.0
 margin_bottom = 706.0
+theme = ExtResource( 3 )
 text = "Play"
 icon_align = 1
 
@@ -53,6 +55,7 @@ margin_left = 802.0
 margin_top = 732.0
 margin_right = 1118.0
 margin_bottom = 836.0
+theme = ExtResource( 3 )
 text = "option"
 icon_align = 1
 
