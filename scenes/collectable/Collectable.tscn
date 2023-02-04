@@ -28,5 +28,7 @@ initial_velocity_random = 0.66
 
 [node name="DeathparticlesTimer" type="Timer" parent="."]
 
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_Collectable_body_entered"]
 [connection signal="timeout" from="DeathparticlesTimer" to="." method="_on_DeathparticlesTimer_timeout"]
