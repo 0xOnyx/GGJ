@@ -1,6 +1,6 @@
 extends Camera2D
 
-var padding = 100
+var pad = 50
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,7 +8,12 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	position = get_parent().get_parent().get_position()
+	var parent = get_parent().get_parent().get_position()
+	var v = get_viewport().get_size()
+	position = parent
+	position.x = clamp(position.x, v.x/2 - pad, v.x/2 + pad)
+#	position.x = v.x / 2
+	
 #	position = Vector2(position.x + 100, position.y)
 	pass
 

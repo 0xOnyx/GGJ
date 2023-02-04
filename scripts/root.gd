@@ -24,7 +24,7 @@ func get_input():
 		rotation_dir += 1
 	if Input.is_action_pressed("right"):
 		rotation_dir -= 1
-	if Input.is_action_pressed("kill"):
+	if Input.is_action_just_pressed("kill"):
 		_on_Timer_timeout()
 	if Input.is_action_just_pressed("boost"):
 		speed = 200

@@ -145,3 +145,5 @@ func _on_Area2D_body_entered(body):
 	old = $KinematicBody2D/CollisionShape2D2.get_position()
 	$KinematicBody2D/CollisionShape2D2.set_position(Vector2(old.x, last.y - (size / 2)))
 	
+func get_tile_size():
+	return size
