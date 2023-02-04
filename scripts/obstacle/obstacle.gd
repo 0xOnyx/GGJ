@@ -24,3 +24,4 @@ func _ready():
 	shape.set_radius($Sprite.get_texture().get_width()*.48)
 #	var collision = CollisionShape2D.new()
 	$CollisionShape2D.set_shape(shape)
+	$Sprite.set_rotation_degrees(rand_range(0, 180))

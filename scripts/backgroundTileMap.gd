@@ -50,8 +50,8 @@ func load_image_to_tilemap(texture, size, position):
 		for y in range(0, size.y, texture.autotile_get_size(1).y):
 			tilemap.set_cell(x / texture.autotile_get_size(1).x, y / texture.autotile_get_size(1).y, 1)
 			
-	for x in range(0, size.x, 10):
-		for y in range(0, size.y, 10):
+	for x in range(position.x, size.x + position.x, 10):
+		for y in range(position.y, size.y + position.y, 10):
 			if (noise_collectable.get_noise_2d(x, y) >= 0.4):
 				tmp_instance = Collectable.instance()
 				tmp_instance.set_position(Vector2(x, y))
