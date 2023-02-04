@@ -10,9 +10,9 @@ var rot_limit = PI/16 # in radians, PI is 180 deg
 func get_input():
 	rotation_dir = 0
 	velocity = Vector2()
-	if Input.is_action_pressed("right"):
-		rotation_dir += 1
 	if Input.is_action_pressed("left"):
+		rotation_dir += 1
+	if Input.is_action_pressed("right"):
 		rotation_dir -= 1
 	
 

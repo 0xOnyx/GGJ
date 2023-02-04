@@ -1,6 +1,6 @@
 extends Node2D
 
-signal sig_tree_selected
+signal sig_tree_selected(selected_tree, position_x)
 
 onready var selected_tree = ""
 
@@ -27,7 +27,7 @@ func _on_but_tree3_pressed():
 
 func _on_but_confirm_pressed():
 	connect("sig_tree_selected", get_parent(), "_on_sig_tree_recieved")
-	emit_signal("sig_tree_selected", selected_tree)
+	emit_signal("sig_tree_selected", selected_tree, position.x)
 	queue_free()
 	$animplay.play_backwards("appear")
 	$animplay/Timer.start()
