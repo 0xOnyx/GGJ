@@ -1,0 +1,206 @@
+[33mcommit f31221cad08128385ca3565da75475925eb174f5[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 07:53:09 2023 +0100
+
+    camera clipping fix #9 fix #5
+
+[33mcommit 32c44cfe152cc0c17e5cf12fa8b3ec7c6817c597[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 07:28:18 2023 +0100
+
+    call or set deffered who knows
+
+[33mcommit 117f7be6556ae9611bfd0995f39a1322137cf25f[m
+Author: onyx <info@jeremy.best>
+Date:   Sat Feb 4 06:24:56 2023 +0100
+
+    add random value for rotation and fix error in random generator collectale
+
+[33mcommit 142e904e221708b5a254de2d1238e7a1871cce5e[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 06:04:55 2023 +0100
+
+    not printf
+
+[33mcommit 349e3a65330b74d2522937cf0a99e984137d1e38[m
+Author: onyx <info@jeremy.best>
+Date:   Sat Feb 4 05:56:01 2023 +0100
+
+    background add follow user
+
+[33mcommit 0fe0893979fbaefda300f95f268e11113a899e14[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 05:51:49 2023 +0100
+
+    collectables working
+
+[33mcommit 2574950e83276a4652cfa0bf0853ab0430d0f32f[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 04:19:13 2023 +0100
+
+    obstacles shape variation
+
+[33mcommit 5e632ba672ae7e294188687cdbc3d81704c07c06[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 02:26:19 2023 +0100
+
+    turnip display fix half
+
+[33mcommit c0d16e8a5baf1eb914a3e058bf2e05c7b42b06ba[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 02:03:42 2023 +0100
+
+    collectables despawned on generation
+
+[33mcommit 0a6797e3851697a1ff637f2d38572bd5c16f7882[m
+Author: onyx <info@jeremy.best>
+Date:   Sat Feb 4 01:57:57 2023 +0100
+
+    correct noise map for spawn
+
+[33mcommit f2172b3dba5ba222f9bee578a1855b8d9aee6bcb[m
+Author: onyx <info@jeremy.best>
+Date:   Sat Feb 4 01:46:26 2023 +0100
+
+    add some collectible
+
+[33mcommit 52c1fb85a7fc0b7473b3e2c66fe61c26d2be727f[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 01:28:33 2023 +0100
+
+    camera to root
+
+[33mcommit 4bbe55d7742041fd1c64cb3048c64b3278654747[m
+Author: onyx <info@jeremy.best>
+Date:   Sat Feb 4 01:22:08 2023 +0100
+
+    add collect
+
+[33mcommit a9e73177b789b44a811e875c5880399361f503e8[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Sat Feb 4 01:20:07 2023 +0100
+
+    camera follows player
+
+[33mcommit f43a557cca420cf9d99530e9112ebd43af52bcb0[m
+Author: onyx <info@jeremy.best>
+Date:   Sat Feb 4 01:15:25 2023 +0100
+
+    sead
+
+[33mcommit ec30ce5ab99208221acb1c909a57a753ac60b364[m
+Merge: 151a6ed bd3e7e3
+Author: onyx <info@jeremy.best>
+Date:   Sat Feb 4 01:03:18 2023 +0100
+
+    Merge branch 'root' of github.com:0xOnyx/GGJ into root
+
+[33mcommit 151a6ed7a9f316e85799cbd17facd814f0aab358[m
+Author: onyx <info@jeremy.best>
+Date:   Sat Feb 4 01:02:42 2023 +0100
+
+    add collectable
+
+[33mcommit bd3e7e345c27a351402e8f15a7a35b51504a850d[m
+Merge: fa6f74f a47c350
+Author: Nicholas S. Zivkovic <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 23:54:18 2023 +0100
+
+    Merge branch 'root' of github.com:0xOnyx/GGJ into root
+
+[33mcommit fa6f74fda930b2605ef1c63e42c17974808c11fd[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 23:51:55 2023 +0100
+
+    root head fixx, subsurface rename
+
+[33mcommit a47c350d5f55d9dd811e2ff98debbe900f8c5a84[m
+Author: onyx <info@jeremy.best>
+Date:   Fri Feb 3 23:51:05 2023 +0100
+
+    working version
+
+[33mcommit f76c47a5ec8114527f403313a87c355550d1e073[m
+Author: onyx <info@jeremy.best>
+Date:   Fri Feb 3 23:29:09 2023 +0100
+
+    add subsurface
+
+[33mcommit 87345f4939563689d3a7200b9ffe877a7138f508[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 23:11:14 2023 +0100
+
+    fixed import error
+
+[33mcommit 0837dc3e903eba8ff4c17cf64cf74107025effb5[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 23:02:51 2023 +0100
+
+    obstacles
+
+[33mcommit e631aa2094e23073923e4ce84dd7f46a53dc63b8[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 22:45:57 2023 +0100
+
+    subsurface collectables
+
+[33mcommit d92654d21ae1fa48664c440189c472b9bcdfc914[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 21:40:44 2023 +0100
+
+    root textured
+
+[33mcommit 34ebe0977b9f48400476fb04790b07b22f69ca8d[m
+Author: onyx <info@jeremy.best>
+Date:   Fri Feb 3 23:02:26 2023 +0100
+
+    GDSCRIPT add background
+
+[33mcommit 8c7f880c59c8e19009f114e4df1023838d3a86ed[m
+Author: onyx <info@jeremy.best>
+Date:   Fri Feb 3 22:01:25 2023 +0100
+
+    add script to load png
+
+[33mcommit baecd617f17472409da1f464b840e478da2ab2b5[m
+Merge: 9ee5ca9 80dff14
+Author: onyx <info@jeremy.best>
+Date:   Fri Feb 3 20:37:57 2023 +0100
+
+    Merge branch 'root' into back
+
+[33mcommit 9ee5ca9e2ca5fadf411ab5a6a839b5db79ebd86d[m
+Author: onyx <info@jeremy.best>
+Date:   Fri Feb 3 20:36:52 2023 +0100
+
+    add background scene
+
+[33mcommit 80dff1482f2ec7f4d7d547c2ef042388ae53436e[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 20:33:08 2023 +0100
+
+    root snake
+
+[33mcommit 7ab9f19520c69afd13b7b0b453b1bb771304ca6d[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 18:05:58 2023 +0100
+
+    sript and assets
+
+[33mcommit 418290845ac67e79e58171ababb9d97999b68553[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 17:50:14 2023 +0100
+
+    main scene
+
+[33mcommit 01ca28aa9ed46f8276d9e08f00508f48c77fe82b[m
+Author: znichola <niki.zivkovic@hotmail.com>
+Date:   Fri Feb 3 17:49:24 2023 +0100
+
+    base files for project
+
+[33mcommit 3d42908a4e460b137b71dc2058ea6204e68dc144[m
+Author: Jérémy Dos Santos <60154937+0xOnyx@users.noreply.github.com>
+Date:   Fri Feb 3 16:38:39 2023 +0100
+
+    Initial commit

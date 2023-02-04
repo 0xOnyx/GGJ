@@ -13,7 +13,7 @@
 
 [node name="Root" parent="snake" instance=ExtResource( 2 )]
 position = Vector2( 264, 0 )
-rotation = -1.5708
+rotation = 6.28319
 
 [node name="Camera2D" type="Camera2D" parent="snake/Root"]
 current = true
