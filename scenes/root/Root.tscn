@@ -59,6 +59,22 @@ current = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( -2, -6.55651e-06 )
+rotation = 1.5708
+amount = 24
+lifetime = 0.4
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2( 0, -1 )
+spread = 97.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 18.35
+initial_velocity_random = 1.0
+scale_amount = 2.0
+scale_amount_random = 1.0
+color = Color( 0.376471, 0.266667, 0.266667, 0.752941 )
+
 [connection signal="timeout" from="N/PathPointTimer" to="." method="_on_PathPointTimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
