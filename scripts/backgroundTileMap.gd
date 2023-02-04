@@ -2,7 +2,10 @@ extends Node2D
 
 var current_level = 1
 var map_set 
+var size = 1760;
+var last = Vector2(0, size)
 
+var shape = RectangleShape2D.new()
 var noise_collectable = OpenSimplexNoise.new()
 var noise_rock = OpenSimplexNoise.new()
 onready var Collectable = preload("res://scenes/collectable/Collectable.tscn")
@@ -19,11 +22,13 @@ func _ready():
 	noise_rock.octaves = 4
 	noise_rock.period = 20.0
 	noise_rock.persistence = 0.8
-#	set_tileset_map()
 	var texture = create_texture("res://assets/tiile_base.png")
-	var tilemap = load_image_to_tilemap(texture, Vector2(1000, 2000))
-	tilemap.z_index = -1
-	add_child(tilemap)
+	load_image_to_tilemap(texture, Vector2(size, size), Vector2(0, 0) )
+	shape.set_extents(Vector2(size / 2, 10))
+	$Area2D/CollisionShape2D.set_shape(shape)
+	$Area2D.set_position(Vector2(size / 2, size / 2))
+	
+
 
 func create_texture(path_img):
 	var image = load(path_img) # Charge l'image PNG
@@ -34,20 +39,20 @@ func create_texture(path_img):
 	tileset.autotile_set_size(1, Vector2(image.get_width(), image.get_height()))
 	return tileset
 
-func load_image_to_tilemap(texture, size):
+func load_image_to_tilemap(texture, size, position):
 	var tilemap = TileMap.new()
 	var tmp_instance
 	tilemap.set_tileset(texture)
 	tilemap.set_cell_size(texture.autotile_get_size(1))
 	
-	# Boucle pour remplir le tileMap avec la taille définie
+	# Boucle pour remplir le tileMap avec la taille définiepa
 	for x in range(0, size.x, texture.autotile_get_size(1).x):
 		for y in range(0, size.y, texture.autotile_get_size(1).y):
 			tilemap.set_cell(x / texture.autotile_get_size(1).x, y / texture.autotile_get_size(1).y, 1)
 			
 	for x in range(0, size.x, 10):
 		for y in range(0, size.y, 10):
-			if (noise_collectable.get_noise_2d(x, y) >= 0.5):
+			if (noise_collectable.get_noise_2d(x, y) >= 0.4):
 				tmp_instance = Collectable.instance()
 				tmp_instance.set_position(Vector2(x, y))
 				add_child(tmp_instance)
@@ -55,6 +60,19 @@ func load_image_to_tilemap(texture, size):
 				tmp_instance = Rock.instance()
 				tmp_instance.set_position(Vector2(x, y))
 				add_child(tmp_instance)
+	tilemap.z_index = -1
+	tilemap.position = position
+	add_child(tilemap)
 
-	return tilemap
+
+
+
+func _on_Area2D_body_entered(body):
+	if body.get_name() == "Root":
+		var texture = create_texture("res://assets/tiile_base.png")
+		load_image_to_tilemap(texture, Vector2(size, size), last )
+		last.y += size
+		$Area2D/CollisionShape2D.set_shape(shape)
+		$Area2D.set_position(Vector2(size / 2, last.y - (size / 2)))
+		print("COOOLISIONNNN!")
 
