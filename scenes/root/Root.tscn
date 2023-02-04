@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/root.gd" type="Script" id=1]
 [ext_resource path="res://assets/root/root_tip_final.png" type="Texture" id=2]
 [ext_resource path="res://assets/root/root_tree_final.png" type="Texture" id=3]
+[ext_resource path="res://scripts/roots/Camera2D.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.99996
@@ -53,11 +54,20 @@ autostart = true
 wait_time = 0.1
 one_shot = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-rotation = 1.5708
+[node name="Node" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Node"]
+unique_name_in_owner = true
 current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
+script = ExtResource( 4 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 position = Vector2( -2, -6.55651e-06 )

@@ -14,7 +14,8 @@ var rot_limit = PI/16 # in radians, PI is 180 deg
 
 func _ready():
 	connect("on_death", get_parent().get_parent(), "_death_signal_recieved")
-	$Camera2D.make_current()
+	$"%Camera2D".make_current()
+	print("player pos", position)
 
 func get_input():
 	rotation_dir = 0
