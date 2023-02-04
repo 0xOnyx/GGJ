@@ -9,3 +9,4 @@ func _on_but_option_pressed():
 		$anim.play("show_hide_option")
 	else:
 		$anim.play_backwards("show_hide_option")
+		
