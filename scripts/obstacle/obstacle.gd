@@ -21,8 +21,6 @@ func _ready():
 	
 	$Sprite.set_texture(pics[rand_range(0, pics.size())])
 	var shape = CircleShape2D.new()
-	print($Sprite.get_texture().get_width()/2)
 	shape.set_radius($Sprite.get_texture().get_width()*.48)
 #	var collision = CollisionShape2D.new()
 	$CollisionShape2D.set_shape(shape)
-	print("rad ", $CollisionShape2D.get_shape().get_radius())
