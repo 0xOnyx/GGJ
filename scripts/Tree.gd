@@ -16,8 +16,10 @@ var attacked = true
 
 
 func _ready():
-	if global_position.x >= 960:
+	if global_position.x <= 960:
 		direction = -1
+	if type == 0:
+		$HP.visible = false
 	$DefenseArea.position.x *= direction
 	$Willow/WillowTreeAttackSheet.flip_h = direction == -1
 
@@ -36,7 +38,7 @@ func init_bomb():
 	type = Type.BOMB
 	
 func attack():
-	
+	$HP.value = HP
 	if type == Type.BOMB and $Buff.is_stopped():
 		$Buff.start()
 		var instance = bomb.instance()
@@ -48,18 +50,21 @@ func attack():
 	if type == Type.SWORD and $Buff.is_stopped():
 		$Buff.start()
 		$Willow/attack.play("attack")
-		if (attacked):
+		if attacked and targets.size() > 0:
 			get_parent().damage_enemy(self, targets[0], damage)
 		attacked = not attacked;
+
 func _on_Area2D_area_entered(area):
-	if area.get_parent().has_method("attack"):
+	print(area.name)
+	if area.get_parent().has_method("attack") and "Enemy" in area.get_parent().name:
 		area.get_parent().attack(self)
 	pass # Replace with function body.	
 
 func _on_DefenseArea_area_entered(area):
-	if not targets.has(area.get_parent()):
+	if not targets.has(area.get_parent()) and "Enemy" in area.get_parent().name:
 		targets.append(area.get_parent())
-	attack()
+	if "Enemy" in area.get_parent().name:
+		attack()
 
 
 func _on_Enemy_Killed(e):
