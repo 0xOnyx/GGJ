@@ -2,7 +2,8 @@ extends Node2D
 
 var current_level = 1
 var map_set
-var size = 176*3;
+var size_none = 176
+var size = size_none * 3;
 var last = Vector2(0, size)
 
 var shape = RectangleShape2D.new()
@@ -76,9 +77,27 @@ func load_image_to_tilemap(texture, size, position):
 
 func _on_Area2D_body_entered(body):
 	if body.get_name() == "Root":
-		var texture = create_texture("res://assets/tiles/tiile_base.png")
-		load_image_to_tilemap(texture, Vector2(size, size), last )
-		last.y += size
+		var texture
+		var default_size = Vector2(size, size)
+		var size_transition
+		print(last.y)
+		if last.y > ( size * 2 ) + size_none:
+			texture = create_texture("res://assets/tiles/tiile_base_rock.png")
+			load_image_to_tilemap(texture, default_size, last )
+			last.y += size
+		elif last.y >= size * 2 :
+			texture = create_texture("res://assets/tiles/tile_transition.png")
+			default_size = Vector2(size, size_none)
+			load_image_to_tilemap(texture, default_size, last )
+			texture = create_texture("res://assets/tiles/tiile_base_rock.png")
+			default_size = Vector2(size, size_none * 2)
+			last.y += size_none
+			load_image_to_tilemap(texture, default_size, last )
+			last.y += size_none * 2
+		else :
+			texture = create_texture("res://assets/tiles/tiile_base.png")
+			load_image_to_tilemap(texture, default_size, last )
+			last.y += size
 		$Area2D/CollisionShape2D.set_shape(shape)
 		$Area2D.set_position(Vector2(size / 2, last.y - (size / 2)))
 		print("COOOLISIONNNN!")
