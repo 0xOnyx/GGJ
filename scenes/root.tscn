@@ -4,22 +4,28 @@
 [ext_resource path="res://assets/root_tip_final.png" type="Texture" id=2]
 [ext_resource path="res://assets/root_final.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 18.0278
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.0
+height = 18.0
 
 [node name="Root" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
-[node name="RootHead" type="Sprite" parent="."]
-position = Vector2( -7, 0 )
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2( -10, 0 )
 rotation = 1.5708
-scale = Vector2( 0.32, 0.32 )
+shape = SubResource( 1 )
+
+[node name="RootHead" type="Sprite" parent="Collider"]
+position = Vector2( 4.37114e-08, 1 )
+scale = Vector2( 0.38, 0.34 )
+z_index = 2
 texture = ExtResource( 2 )
 
 [node name="N" type="Node" parent="."]
 
 [node name="PathPointTimer" type="Timer" parent="N"]
-wait_time = 0.15
+wait_time = 0.05
 autostart = true
 
 [node name="Path" type="Line2D" parent="N"]
@@ -28,8 +34,5 @@ texture = ExtResource( 3 )
 texture_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
-
-[node name="Collider" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
 
 [connection signal="timeout" from="N/PathPointTimer" to="." method="_on_PathPointTimer_timeout"]

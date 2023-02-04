@@ -25,5 +25,6 @@ func _physics_process(delta):
 func _on_PathPointTimer_timeout():
 #	print("appended", position)
 	$N/Path.add_point(position)
-	$N/Path.set_draw_behind_parent(true)
+#	$N/Path.set_draw_behind_parent(true)
+#	$RootHead._set_on_top(true)
 	$N/PathPointTimer.start()
