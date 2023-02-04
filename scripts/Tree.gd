@@ -4,16 +4,12 @@ enum Type {MAIN, SWORD, GUN, BOMB}
 
 var type = Type.MAIN
 var targets = []
-var enemy = preload("res://scenes/surface_scene/Enemy.tscn")
 #Price to build it
 var price
 var HP = 100;
 #Tree level
 var lvl = 1
 var damage = 50
-
-func _ready():
-	pass
 
 func init_sword(buff):
 	$Buff.wait_time = buff	

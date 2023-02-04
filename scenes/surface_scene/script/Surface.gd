@@ -41,7 +41,6 @@ func _ready():
 	var instance = main_tree.instance()
 	instance.position.x = 0
 	instance.position.y = floor_level
-	instance.init_sword(2)
 	trees.append(instance)
 	add_child(instance)
 	launch()

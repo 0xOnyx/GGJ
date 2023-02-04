@@ -10,6 +10,7 @@ extends Node2D
 func _ready() -> void:
 	var screen = get_viewport().size
 	print(screen)
+	$anim.play_backwards("root")
 #	$SubsurfaceViewportContainer/SubsurfaceViewport.set_size(Vector2(screen.x, screen.y*.56))
 #	$SurfaceViewportContainer/SurfaceViewport.set_size(Vector2(screen.x, screen.y*.56))
 #	$SubsurfaceViewportContainer/SubsurfaceViewport.set_size(Vector2(screen.x, 300))
