@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/background/Background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/root/Root.tscn" type="PackedScene" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="SubsurfaceNode2D" type="Node2D"]
 
 [node name="background" type="Node2D" parent="."]
 

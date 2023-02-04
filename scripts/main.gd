@@ -7,6 +7,11 @@ extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+func _ready() -> void:
+	var screen = get_viewport().size
+	print(screen)
+#	$SubsurfaceViewportContainer/SubsurfaceViewport.set_size(Vector2(screen.x, screen.y*.56))
+#	$SurfaceViewportContainer/SurfaceViewport.set_size(Vector2(screen.x, screen.y*.56))
+	$SubsurfaceViewportContainer/SubsurfaceViewport.set_size(Vector2(screen.x, 300))
 
+#var lala: Rect2 = "test"
