@@ -1,16 +1,85 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/tower_defense.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/subsurface/Subsurface.tscn" type="PackedScene" id=4]
 
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("SubsurfaceViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -532, -790 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SurfaceViewportContainer:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -1054 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "root"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("SurfaceViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -564 ), Vector2( 0, -1054 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SubsurfaceViewportContainer:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -547, -299 ), Vector2( -532, -790 ) ]
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="SubsurfaceViewportContainer" type="ViewportContainer" parent="."]
+margin_left = -532.0
+margin_top = -790.0
+margin_right = 268.0
+margin_bottom = -290.0
+rect_scale = Vector2( 4, 4 )
+
+[node name="SubsurfaceViewport" type="Viewport" parent="SubsurfaceViewportContainer"]
+size = Vector2( 800, 500 )
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="SubsurfaceNode2D" parent="SubsurfaceViewportContainer/SubsurfaceViewport" instance=ExtResource( 4 )]
+
 [node name="SurfaceViewportContainer" type="ViewportContainer" parent="."]
+margin_top = -1054.0
 margin_right = 1920.0
-margin_bottom = 1080.0
-rect_scale = Vector2( 0.312, 0.312 )
+margin_bottom = 26.0
 mouse_filter = 1
 
 [node name="SurfaceViewport" type="Viewport" parent="SurfaceViewportContainer"]
@@ -20,14 +89,6 @@ render_target_update_mode = 3
 
 [node name="tower_defense" parent="SurfaceViewportContainer/SurfaceViewport" instance=ExtResource( 3 )]
 
-[node name="SubsurfaceViewportContainer" type="ViewportContainer" parent="."]
-margin_top = 339.0
-margin_right = 800.0
-margin_bottom = 839.0
-
-[node name="SubsurfaceViewport" type="Viewport" parent="SubsurfaceViewportContainer"]
-size = Vector2( 800, 500 )
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="SubsurfaceNode2D" parent="SubsurfaceViewportContainer/SubsurfaceViewport" instance=ExtResource( 4 )]
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/root = SubResource( 2 )

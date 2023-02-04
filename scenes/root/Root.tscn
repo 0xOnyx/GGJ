@@ -18,6 +18,7 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="RootHead" type="Sprite" parent="Collider"]
+self_modulate = Color( 0.807843, 0, 0, 1 )
 position = Vector2( 4.37114e-08, 1 )
 scale = Vector2( 0.38, 0.34 )
 z_index = 2
@@ -30,7 +31,7 @@ wait_time = 0.05
 autostart = true
 
 [node name="Path" type="Line2D" parent="N"]
-default_color = Color( 1, 1, 1, 1 )
+default_color = Color( 0.67451, 0, 0, 1 )
 texture = ExtResource( 3 )
 texture_mode = 1
 begin_cap_mode = 2

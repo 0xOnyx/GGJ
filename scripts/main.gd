@@ -12,6 +12,10 @@ func _ready() -> void:
 	print(screen)
 #	$SubsurfaceViewportContainer/SubsurfaceViewport.set_size(Vector2(screen.x, screen.y*.56))
 #	$SurfaceViewportContainer/SurfaceViewport.set_size(Vector2(screen.x, screen.y*.56))
-	$SubsurfaceViewportContainer/SubsurfaceViewport.set_size(Vector2(screen.x, 300))
+#	$SubsurfaceViewportContainer/SubsurfaceViewport.set_size(Vector2(screen.x, 300))
 
 #var lala: Rect2 = "test"
+
+func _physics_process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		$anim.play("root")
