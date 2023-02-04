@@ -8,9 +8,11 @@ var last = Vector2(0, size)
 
 var shape = RectangleShape2D.new()
 var noise_collectable = OpenSimplexNoise.new()
+var noise_water = OpenSimplexNoise.new()
 var noise_rock = OpenSimplexNoise.new()
 onready var Collectable = preload("res://scenes/collectable/Collectable.tscn")
 onready var Rock = preload("res://scenes/obstacle/Obstacle.tscn")
+onready var Marmotte = preload("res://scenes/obstacle/marmote.tscn")
 
 func _ready():
 	# Configure
@@ -23,6 +25,12 @@ func _ready():
 	noise_rock.octaves = 4
 	noise_rock.period = 20.0
 	noise_rock.persistence = 0.8
+	
+	noise_water.seed = randi()
+	noise_water.octaves = 4
+	noise_water.period = 60.0
+	noise_water.persistence = 0.8
+	
 	var texture = create_texture("res://assets/tiles/tiile_base.png")
 	load_image_to_tilemap(texture, Vector2(size, size), Vector2(0, 0), 0)
 	shape.set_extents(Vector2(size / 2, 10))
@@ -46,15 +54,20 @@ func load_image_to_tilemap(texture, size, position, biome):
 	var tmp_instance
 	tilemap.set_tileset(texture)
 	tilemap.set_cell_size(texture.autotile_get_size(1))
+	var padding = (size_none * 4)
 
 	# Boucle pour remplir le tileMap avec la taille définiepa
-	for x in range(0, size.x, texture.autotile_get_size(1).x):
+	for x in range(0, size.x + padding, texture.autotile_get_size(1).x):
 		for y in range(0, size.y, texture.autotile_get_size(1).y):
 			tilemap.set_cell(x / texture.autotile_get_size(1).x, y / texture.autotile_get_size(1).y, 1)
-
 	for x in range(position.x, size.x + position.x, 10):
 		for y in range(position.y, size.y + position.y, 10):
-			if (noise_collectable.get_noise_2d(x, y) >= 0.4):
+			if (noise_rock.get_noise_2d(x, y) >= 0.55 && biome == 0):
+				tmp_instance = Marmotte.instance()
+				tmp_instance.set_position(Vector2(x, y))
+				call_deferred("add_child", tmp_instance)
+				
+			elif (noise_collectable.get_noise_2d(x, y) >= 0.47):
 				tmp_instance = Collectable.instance()
 				tmp_instance.create(biome)
 				tmp_instance.set_position(Vector2(x, y))
@@ -66,11 +79,12 @@ func load_image_to_tilemap(texture, size, position, biome):
 				tmp_instance.set_position(Vector2(x, y))
 #				add_child(tmp_instance)
 				call_deferred("add_child", tmp_instance)
-				
+
 #			set_deferred("position", Vector2(x, y))
 #			tmp_instance.set_position(Vector2(x, y))
 #			add_child(tmp_instance)
 	tilemap.z_index = -1
+	position.x -= padding / 2
 	tilemap.position = position
 	add_child(tilemap)
 
