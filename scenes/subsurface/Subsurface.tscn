@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/background/Background.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/root/Root.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/root/RootSystem.tscn" type="PackedScene" id=3]
 
 [node name="SubsurfaceNode2D" type="Node2D"]
 
@@ -11,11 +11,4 @@
 
 [node name="snake" type="Node2D" parent="."]
 
-[node name="Root" parent="snake" instance=ExtResource( 2 )]
-position = Vector2( 400, 0 )
-
-[node name="Camera2D" type="Camera2D" parent="snake/Root"]
-rotation = 1.5708
-current = true
-editor_draw_limits = true
-editor_draw_drag_margin = true
+[node name="RootSystemNode2D" parent="snake" instance=ExtResource( 3 )]

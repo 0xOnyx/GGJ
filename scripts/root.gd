@@ -6,9 +6,15 @@ export (float) var rotation_speed = 1.8
 onready var path_line = $N/Path
 onready var path_timer = $N/PathPointTimer
 
+signal on_death()
+
 var velocity = Vector2()
 var rotation_dir = 0
 var rot_limit = PI/16 # in radians, PI is 180 deg
+
+func _ready():
+	connect("on_death", get_tree().root.get_node("RootSystemNode2D"), "_death_signal_recieved")
+	$Camera2D.make_current()
 
 func get_input():
 	rotation_dir = 0
@@ -35,4 +41,9 @@ func _on_PathPointTimer_timeout():
 
 
 func _on_Timer_timeout():
-	print("we should die")
+	print("i died")
+	emit_signal("on_death")#, get_tree().root.get_node("Root/N/Path"))
+	$DeathTimer.start()
+
+func _on_DeathTimer_timeout():
+	queue_free()

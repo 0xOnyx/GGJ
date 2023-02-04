@@ -35,6 +35,7 @@ wait_time = 0.05
 autostart = true
 
 [node name="Path" type="Line2D" parent="N"]
+unique_name_in_owner = true
 width = 20.0
 width_curve = SubResource( 2 )
 default_color = Color( 1, 1, 1, 1 )
@@ -44,8 +45,20 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 10.0
+one_shot = true
 autostart = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 1.5708
+current = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [connection signal="timeout" from="N/PathPointTimer" to="." method="_on_PathPointTimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
