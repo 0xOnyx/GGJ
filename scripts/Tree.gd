@@ -12,16 +12,27 @@ var HP = 100;
 var lvl = 1
 var damage = 50
 var direction = 1
+var attacked = true
+
 
 func _ready():
 	if global_position.x >= 960:
 		direction = -1
 	$DefenseArea.position.x *= direction
+	$Willow/WillowTreeAttackSheet.flip_h = direction == -1
 
 func init_sword():
+	$DefenseArea.visible = true
+	$Willow.visible = true
+	$TreeLife.visible = false
 	type = Type.SWORD
+	$Buff.wait_time = 0.6
+
 	
 func init_bomb():
+	$Bomb.visible = true
+	$TreeLife.visible = false
+	$Buff.wait_time = 2 
 	type = Type.BOMB
 	
 func attack():
@@ -36,8 +47,10 @@ func attack():
 		
 	if type == Type.SWORD and $Buff.is_stopped():
 		$Buff.start()
-		get_parent().damage_enemy(self, targets[0], damage)
-	
+		$Willow/attack.play("attack")
+		if (attacked):
+			get_parent().damage_enemy(self, targets[0], damage)
+		attacked = not attacked;
 func _on_Area2D_area_entered(area):
 	if area.get_parent().has_method("attack"):
 		area.get_parent().attack(self)

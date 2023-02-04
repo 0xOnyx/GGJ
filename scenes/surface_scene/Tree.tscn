@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/Tree.gd" type="Script" id=1]
 [ext_resource path="res://assets/trees/tree_life.png" type="Texture" id=2]
+[ext_resource path="res://assets/trees/willow_tree.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/surface_scene/tree/Pomegrenade.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 20 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 50, 10 )
+extents = Vector2( 18, 10 )
 
 [node name="Tree" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,7 +27,8 @@ scale = Vector2( 2.5, 6 )
 shape = SubResource( 1 )
 
 [node name="DefenseArea" type="Area2D" parent="."]
-position = Vector2( 60, -20 )
+visible = false
+position = Vector2( 44, -20 )
 collision_layer = 2
 collision_mask = 2
 
@@ -33,6 +36,14 @@ collision_mask = 2
 shape = SubResource( 4 )
 
 [node name="Buff" type="Timer" parent="."]
+
+[node name="Bomb" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 1, -47 )
+
+[node name="Willow" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 2, -54 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="DefenseArea" to="." method="_on_DefenseArea_area_entered"]
