@@ -41,26 +41,23 @@ func _ready():
 	var instance = main_tree.instance()
 	instance.position.x = 0
 	instance.position.y = floor_level
-	instance.init_bomb(2,50)
 	connect("enemy_killed", instance, "_on_Enemy_Killed")	
 
 	add_child(instance)
 	launch()
 	pass
 
-func create_tree(x, type, buff_time, damage):
+func create_tree(x, type):
 	var instance = main_tree.instance()
 	instance.position.x = x
 	instance.position.y = floor_level
 	if type == 1:
-		instance.init_sword(buff_time, damage)
-		
-	if type == 2:
-		instance.init_gun(buff_time,damage)
-		
+		instance.init_sword()
+	#if type == 2:
+	#	instance.init_gun()
 	if type == 3:
-		instance.init_bomb(buff_time, damage)
-	connect("enemy_killed", instance, "_on_Enemy_Killed")	
+		instance.init_bomb()
+	connect("enemy_killed", instance, "_on_Enemy_Killed")
 	return instance
 
 # warning-ignore:shadowed_variable
@@ -84,3 +81,6 @@ func _on_WaveTimer_timeout():
 	$WaveTimer.wait_time = duration
 	print_debug("End of wave ")
 
+func _on_sig_tree_recieved(selected_tree, position_x):
+	add_child(create_tree(position_x, selected_tree))
+	
