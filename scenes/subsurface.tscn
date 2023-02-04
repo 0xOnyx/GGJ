@@ -6,12 +6,14 @@
 [node name="Node2D" type="Node2D"]
 position = Vector2( 0, 1 )
 
-[node name="background" type="CanvasLayer" parent="."]
-layer = -1
+[node name="background" type="Node2D" parent="."]
 
 [node name="background" parent="background" instance=ExtResource( 1 )]
 
-[node name="snake" type="CanvasLayer" parent="."]
+[node name="snake" type="Node2D" parent="."]
 
 [node name="Root" parent="snake" instance=ExtResource( 2 )]
 position = Vector2( 478, 156 )
+
+[node name="Camera2D" type="Camera2D" parent="snake/Root"]
+current = true
