@@ -4,3 +4,6 @@ extends Node
 #				1 -> Exploration
 #				2 -> Tower Defense
 var game_state = 0
+
+var volume_music = 1
+var volume_effect = 1

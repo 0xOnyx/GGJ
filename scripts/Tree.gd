@@ -18,15 +18,10 @@ func _ready():
 		direction = -1
 	$DefenseArea.position.x *= direction
 
-func init_sword(buff, d):
-	damage = d
-	$Buff.wait_time = buff	
-	
+func init_sword():
 	type = Type.SWORD
 	
-func init_bomb(buff, d):
-	$Buff.wait_time = buff	
-	damage = d
+func init_bomb():
 	type = Type.BOMB
 	
 func attack():
@@ -38,7 +33,6 @@ func attack():
 		instance.direction = direction
 		add_child(instance)
 		instance.shoot()
-		
 		
 	if type == Type.SWORD and $Buff.is_stopped():
 		$Buff.start()
