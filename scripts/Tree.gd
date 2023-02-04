@@ -2,6 +2,7 @@ extends Node2D
 
 enum Type {MAIN, SWORD, GUN, BOMB}
 
+var bomb = preload("res://scenes/surface_scene/tree/Bomb.tscn")
 var type = Type.MAIN
 var targets = []
 #Price to build it
@@ -10,16 +11,35 @@ var HP = 100;
 #Tree level
 var lvl = 1
 var damage = 50
+var direction = 1
 
-func init_sword(buff):
+func _ready():
+	if global_position.x >= 960:
+		direction = -1
+	$DefenseArea.position.x *= direction
+
+func init_sword(buff, d):
+	damage = d
 	$Buff.wait_time = buff	
+	
 	type = Type.SWORD
 	
-func init_bomb(buff):
+func init_bomb(buff, d):
 	$Buff.wait_time = buff	
+	damage = d
 	type = Type.BOMB
 	
 func attack():
+	
+	if type == Type.BOMB and $Buff.is_stopped():
+		$Buff.start()
+		var instance = bomb.instance()
+		instance.position.y = -45
+		instance.direction = direction
+		add_child(instance)
+		instance.shoot()
+		
+		
 	if type == Type.SWORD and $Buff.is_stopped():
 		$Buff.start()
 		get_parent().damage_enemy(self, targets[0], damage)
@@ -34,6 +54,11 @@ func _on_DefenseArea_area_entered(area):
 		targets.append(area.get_parent())
 	attack()
 
+
+func _on_Enemy_Killed(e):
+	print(true)
+	if targets.has(e):
+		targets.erase(e)
 
 func _on_Buff_timeout():
 	$Buff.stop()

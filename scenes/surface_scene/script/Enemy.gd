@@ -3,6 +3,8 @@ extends Node2D
 # Enum of state in wich the enemy can be
 enum State {DEAD, MOVING, ATTACKING, NONE}
 
+signal Enemy
+
 var target
 var speed = 1
 var buff = 0.5
