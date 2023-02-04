@@ -13,6 +13,7 @@ var noise_rock = OpenSimplexNoise.new()
 onready var Collectable = preload("res://scenes/collectable/Collectable.tscn")
 onready var Rock = preload("res://scenes/obstacle/Obstacle.tscn")
 onready var Marmotte = preload("res://scenes/obstacle/marmote.tscn")
+var padding = (size_none * 3)
 
 func _ready():
 	# Configure
@@ -33,9 +34,9 @@ func _ready():
 	
 	var texture = create_texture("res://assets/tiles/tiile_base.png")
 	load_image_to_tilemap(texture, Vector2(size, size), Vector2(0, 0), 0)
-	shape.set_extents(Vector2(size / 2, 10))
+	shape.set_extents(Vector2(size , 10))
 	$Area2D/CollisionShape2D.set_shape(shape)
-#	set_deferred("shape", shape)
+	set_deferred("shape", shape)
 	$Area2D.set_position(Vector2(size / 2, size / 2))
 
 
@@ -54,7 +55,7 @@ func load_image_to_tilemap(texture, size, position, biome):
 	var tmp_instance
 	tilemap.set_tileset(texture)
 	tilemap.set_cell_size(texture.autotile_get_size(1))
-	var padding = (size_none * 4)
+
 
 	# Boucle pour remplir le tileMap avec la taille définiepa
 	for x in range(0, size.x + padding, texture.autotile_get_size(1).x):
@@ -86,6 +87,10 @@ func load_image_to_tilemap(texture, size, position, biome):
 	tilemap.z_index = -1
 	position.x -= padding / 2
 	tilemap.position = position
+	$KinematicBody2D/CollisionShape2D.set_position(Vector2(position.x, size.y / 2))
+	$KinematicBody2D/CollisionShape2D.shape.set_extents(Vector2(10, 150))
+	$KinematicBody2D/CollisionShape2D2.set_position(Vector2(size.x + (padding / 2), size.y / 2))
+	$KinematicBody2D/CollisionShape2D2.shape.set_extents(Vector2(10, 150))
 	add_child(tilemap)
 
 
@@ -134,3 +139,9 @@ func _on_Area2D_body_entered(body):
 			last.y += size
 		$Area2D/CollisionShape2D.set_shape(shape)
 		$Area2D.set_position(Vector2(size / 2, last.y - (size / 2)))
+
+	var old = $KinematicBody2D/CollisionShape2D.get_position()
+	$KinematicBody2D/CollisionShape2D.set_position(Vector2(old.x, last.y - (size / 2)))
+	old = $KinematicBody2D/CollisionShape2D2.get_position()
+	$KinematicBody2D/CollisionShape2D2.set_position(Vector2(old.x, last.y - (size / 2)))
+	
