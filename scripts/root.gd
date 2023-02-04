@@ -5,7 +5,7 @@ export (float) var rotation_speed = 1.8
 
 var velocity = Vector2()
 var rotation_dir = 0
-var rot_limit = PI/16
+var rot_limit = PI/16 # in radians, PI is 180 deg
 
 func get_input():
 	rotation_dir = 0
@@ -21,7 +21,6 @@ func _physics_process(delta):
 	velocity = Vector2(-speed, 0).rotated(rotation)
 	rotation += rotation_dir * rotation_speed * delta
 	rotation = clamp(rotation, -PI+rot_limit, -rot_limit)
-	print(rot_limit, "  ", rad2deg(rotation))
 	velocity = move_and_slide(velocity)
 
 func _on_PathPointTimer_timeout():

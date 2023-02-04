@@ -22,7 +22,7 @@ func _ready():
 	noise_rock.octaves = 4
 	noise_rock.period = 20.0
 	noise_rock.persistence = 0.8
-	var texture = create_texture("res://assets/tiile_base.png")
+	var texture = create_texture("res://assets/tiles/tiile_base.png")
 	load_image_to_tilemap(texture, Vector2(size, size), Vector2(0, 0) )
 	shape.set_extents(Vector2(size / 2, 10))
 	$Area2D/CollisionShape2D.set_shape(shape)
@@ -76,7 +76,7 @@ func load_image_to_tilemap(texture, size, position):
 
 func _on_Area2D_body_entered(body):
 	if body.get_name() == "Root":
-		var texture = create_texture("res://assets/tiile_base.png")
+		var texture = create_texture("res://assets/tiles/tiile_base.png")
 		load_image_to_tilemap(texture, Vector2(size, size), last )
 		last.y += size
 		$Area2D/CollisionShape2D.set_shape(shape)
