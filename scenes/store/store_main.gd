@@ -28,3 +28,14 @@ func _on_but_tree3_pressed():
 func _on_but_confirm_pressed():
 	connect("sig_tree_selected", get_parent(), "_on_sig_tree_recieved")
 	emit_signal("sig_tree_selected", selected_tree)
+	$animplay.play_backwards("appear")
+	$animplay/Timer.start()
+
+
+func _on_Area2D_mouse_entered():
+	$animplay.play_backwards("appear")
+	$animplay/Timer.start()
+
+
+func _on_Timer_timeout():
+	queue_free()
