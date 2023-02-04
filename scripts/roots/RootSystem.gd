@@ -9,6 +9,8 @@ func _ready():
 
 func root_instance():
 	child = root.instance()
+	var viw = get_viewport().size
+	child.set_position(Vector2(viw.x/3, 0))
 	$RootNode2D.add_child(child)
 
 func _death_signal_recieved():

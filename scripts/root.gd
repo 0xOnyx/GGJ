@@ -25,6 +25,10 @@ func get_input():
 		rotation_dir -= 1
 	if Input.is_action_pressed("kill"):
 		_on_Timer_timeout()
+	if Input.is_action_just_pressed("boost"):
+		speed = 200
+	if Input.is_action_just_released("boost"):
+		speed = 100
 	
 
 func _physics_process(delta):
