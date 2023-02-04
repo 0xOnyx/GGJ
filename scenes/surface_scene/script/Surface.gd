@@ -3,13 +3,13 @@ extends Node2D
 var enemy = preload("res://scenes/surface_scene/Enemy.tscn")
 var main_tree = preload("res://scenes/surface_scene/Tree.tscn")
 
+signal enemy_killed(enemy)
+
 var floor_level = 0
 #Root HP point when it's 0 game is over
 var root_tree
 #True if it is a surface game turn which means you cannot buy thing
 var active = false
-#Array containing trees
-var trees = []
 #Current level
 var lvl = 1
 #Factor that will be multiplied to the level to know the number of enemies to spawn
@@ -41,21 +41,34 @@ func _ready():
 	var instance = main_tree.instance()
 	instance.position.x = 0
 	instance.position.y = floor_level
-	instance.init_sword(2)
-	trees.append(instance)
+	instance.init_bomb(2,50)
+	connect("enemy_killed", instance, "_on_Enemy_Killed")	
 	add_child(instance)
 	launch()
 	pass
 
+func create_tree(x, type, buff_time, damage):
+	var instance = main_tree.instance()
+	instance.position.x = x
+	instance.position.y = floor_level
+	if type == 1:
+		instance.init_sword(buff_time, damage)
+		
+	if type == 2:
+		instance.init_gun(buff_time,damage)
+		
+	if type == 3:
+		instance.init_bomb(buff_time, damage)
+	connect("enemy_killed", instance, "_on_Enemy_Killed")	
+	return instance
+
+# warning-ignore:shadowed_variable
 func damage_enemy(source, enemy, damage):
-	
 		enemy.HP -= damage
 		enemy.get_node("HP").value -= damage
 		if (enemy.HP <= 0):
 			var tmp = source.targets[0]
-			for tree in trees:
-				if tree.targets.has(enemy):
-					tree.targets.erase(enemy)
+			emit_signal("enemy_killed", enemy)
 			tmp.queue_free()
 
 
