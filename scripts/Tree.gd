@@ -29,7 +29,8 @@ func attack():
 		get_parent().damage_enemy(self, targets[0], damage)
 	
 func _on_Area2D_area_entered(area):
-	area.get_parent().attack(self)
+	if area.get_parent().has_method("attack"):
+		area.get_parent().attack(self)
 	pass # Replace with function body.	
 
 func _on_DefenseArea_area_entered(area):

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DELETE_ASSETS_TEMPO.png-1a5a424e9aaebc0b16d5627e0968ae8f.stex"
+path="res://.import/sapling.png-fbc0ecc4cbd4ad736916c83a2df9dd5b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/store/DELETE_ASSETS_TEMPO.png"
-dest_files=[ "res://.import/DELETE_ASSETS_TEMPO.png-1a5a424e9aaebc0b16d5627e0968ae8f.stex" ]
+source_file="res://assets/trees/sapling.png"
+dest_files=[ "res://.import/sapling.png-fbc0ecc4cbd4ad736916c83a2df9dd5b.stex" ]
 
 [params]
 
