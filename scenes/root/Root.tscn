@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/root.gd" type="Script" id=1]
 [ext_resource path="res://assets/root/root_tip_final.png" type="Texture" id=2]
-[ext_resource path="res://assets/root/root_final.png" type="Texture" id=3]
+[ext_resource path="res://assets/root/root_tree_final.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.0
@@ -18,6 +18,7 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="RootHead" type="Sprite" parent="Collider"]
+visible = false
 self_modulate = Color( 0.807843, 0, 0, 1 )
 position = Vector2( 4.37114e-08, 1 )
 scale = Vector2( 0.38, 0.34 )
@@ -31,7 +32,7 @@ wait_time = 0.05
 autostart = true
 
 [node name="Path" type="Line2D" parent="N"]
-default_color = Color( 0.67451, 0, 0, 1 )
+default_color = Color( 1, 1, 1, 1 )
 texture = ExtResource( 3 )
 texture_mode = 1
 begin_cap_mode = 2
