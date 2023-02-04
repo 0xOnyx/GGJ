@@ -13,10 +13,13 @@ func _ready():
 
 func _on_Collectable_body_entered(body):
 	print(body.get_name(), " hit collectable")
-	$DeathParticles.set_emitting(true)
-	$DeathparticlesTimer.start()
-	$Sprite.set_visible(false)
-	$DeathparticlesTimer.wait_time = $DeathParticles.lifetime * 2
+	if (body.get_name() == "Root"):
+		$DeathParticles.set_emitting(true)
+		$DeathparticlesTimer.start()
+		$Sprite.set_visible(false)
+		$DeathparticlesTimer.wait_time = $DeathParticles.lifetime * 2
+	else:
+		queue_free()
 
 func _on_DeathparticlesTimer_timeout():
 	queue_free()
