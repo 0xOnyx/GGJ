@@ -28,7 +28,7 @@ func create_texture(path_img):
 
 func load_image_to_tilemap(texture, size):
 	var tilemap = TileMap.new()
-	
+	var collect_tmp
 	tilemap.set_tileset(texture)
 	tilemap.set_cell_size(texture.autotile_get_size(1))
 	
@@ -38,10 +38,11 @@ func load_image_to_tilemap(texture, size):
 			for x_x in range(0, x):
 				for y_y in range(0, y):
 					var noise_res = noise.get_noise_2d(x_x, y_y)
-					
-					if (noise_res >= 0.2):
+					if (noise_res >= 0.6):
 						print(noise_res)
-						add_child(Collectable.instance())
+						collect_tmp = Collectable.instance()
+						collect_tmp.set_position(Vector2(x_x, y_y))
+						add_child(collect_tmp)
 			tilemap.set_cell(x / texture.autotile_get_size(1).x, y / texture.autotile_get_size(1).y, 1)
 	return tilemap
 
