@@ -120,4 +120,3 @@ func _on_Area2D_body_entered(body):
 			last.y += size
 		$Area2D/CollisionShape2D.set_shape(shape)
 		$Area2D.set_position(Vector2(size / 2, last.y - (size / 2)))
-		print("COOOLISIONNNN!")

@@ -9,6 +9,4 @@
 
 [node name="background" parent="background" instance=ExtResource( 1 )]
 
-[node name="snake" type="Node2D" parent="."]
-
-[node name="RootSystemNode2D" parent="snake" instance=ExtResource( 3 )]
+[node name="RootSystemNode2D" parent="." instance=ExtResource( 3 )]
