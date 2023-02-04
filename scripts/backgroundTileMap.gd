@@ -2,7 +2,8 @@ extends Node2D
 
 var current_level = 1
 var map_set
-var size = 176*3;
+var size_none = 176
+var size = size_none * 3;
 var last = Vector2(0, size)
 
 var shape = RectangleShape2D.new()
@@ -23,7 +24,7 @@ func _ready():
 	noise_rock.period = 20.0
 	noise_rock.persistence = 0.8
 	var texture = create_texture("res://assets/tiles/tiile_base.png")
-	load_image_to_tilemap(texture, Vector2(size, size), Vector2(0, 0) )
+	load_image_to_tilemap(texture, Vector2(size, size), Vector2(0, 0), 0)
 	shape.set_extents(Vector2(size / 2, 10))
 	$Area2D/CollisionShape2D.set_shape(shape)
 #	set_deferred("shape", shape)
@@ -40,7 +41,7 @@ func create_texture(path_img):
 	tileset.autotile_set_size(1, Vector2(image.get_width(), image.get_height()))
 	return tileset
 
-func load_image_to_tilemap(texture, size, position):
+func load_image_to_tilemap(texture, size, position, biome):
 	var tilemap = TileMap.new()
 	var tmp_instance
 	tilemap.set_tileset(texture)
@@ -55,11 +56,13 @@ func load_image_to_tilemap(texture, size, position):
 		for y in range(position.y, size.y + position.y, 10):
 			if (noise_collectable.get_noise_2d(x, y) >= 0.4):
 				tmp_instance = Collectable.instance()
+				tmp_instance.create(biome)
 				tmp_instance.set_position(Vector2(x, y))
 #				add_child(tmp_instance)
 				call_deferred("add_child", tmp_instance)
 			elif (noise_rock.get_noise_2d(x, y) >= 0.47):
 				tmp_instance = Rock.instance()
+				tmp_instance.create(biome)
 				tmp_instance.set_position(Vector2(x, y))
 #				add_child(tmp_instance)
 				call_deferred("add_child", tmp_instance)
@@ -72,13 +75,29 @@ func load_image_to_tilemap(texture, size, position):
 	add_child(tilemap)
 
 
-
-
 func _on_Area2D_body_entered(body):
 	if body.get_name() == "Root":
-		var texture = create_texture("res://assets/tiles/tiile_base.png")
-		load_image_to_tilemap(texture, Vector2(size, size), last )
-		last.y += size
+		var texture
+		var default_size = Vector2(size, size)
+		var size_transition
+		print(last.y)
+		if last.y > ( size * 2 ) + size_none:
+			texture = create_texture("res://assets/tiles/tiile_base_rock.png")
+			load_image_to_tilemap(texture, default_size, last, 1 )
+			last.y += size
+		elif last.y >= size * 2 :
+			texture = create_texture("res://assets/tiles/tile_transition.png")
+			default_size = Vector2(size, size_none)
+			load_image_to_tilemap(texture, default_size, last, 0)
+			texture = create_texture("res://assets/tiles/tiile_base_rock.png")
+			default_size = Vector2(size, size_none * 2)
+			last.y += size_none
+			load_image_to_tilemap(texture, default_size, last, 1 )
+			last.y += size_none * 2
+		else :
+			texture = create_texture("res://assets/tiles/tiile_base.png")
+			load_image_to_tilemap(texture, default_size, last , 0)
+			last.y += size
 		$Area2D/CollisionShape2D.set_shape(shape)
 		$Area2D.set_position(Vector2(size / 2, last.y - (size / 2)))
 		print("COOOLISIONNNN!")
