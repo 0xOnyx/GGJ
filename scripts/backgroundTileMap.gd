@@ -5,8 +5,8 @@ var map_set
 
 var noise_collectable = OpenSimplexNoise.new()
 var noise_rock = OpenSimplexNoise.new()
-onready var Collectable = load("res://scenes/collectable.tscn")
-onready var Rock = load("res://scenes/obstacle.tscn")
+onready var Collectable = preload("res://scenes/collectable.tscn")
+onready var Rock = preload("res://scenes/obstacle/Obstacle.tscn")
 
 func _ready():
 	# Configure
