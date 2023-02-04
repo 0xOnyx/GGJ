@@ -4,6 +4,7 @@
 
 [sub_resource type="Animation" id=1]
 length = 0.001
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -41,6 +42,14 @@ position = Vector2( 1, 0 )
 texture = ExtResource( 1 )
 hframes = 3
 frame = 1
+
+[node name="Label" type="Label" parent="."]
+margin_left = -47.0
+margin_top = -29.0
+margin_right = 29.0
+margin_bottom = 6.0
+text = "Je mange ma
+mère auj..."
 
 [node name="anim" type="AnimationPlayer" parent="."]
 autoplay = "idle"

@@ -156,11 +156,11 @@ text = "Arbre 3"
 icon_align = 1
 
 [node name="but_confirm" type="Button" parent="."]
-margin_left = -74.0
-margin_top = 197.0
-margin_right = 111.0
-margin_bottom = 290.0
-rect_min_size = Vector2( 185, 93 )
+margin_left = -142.0
+margin_top = 171.0
+margin_right = 174.0
+margin_bottom = 319.0
+rect_min_size = Vector2( 316, 148 )
 theme = ExtResource( 3 )
 text = "confirm ?"
 

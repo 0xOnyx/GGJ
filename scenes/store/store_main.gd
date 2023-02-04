@@ -8,9 +8,6 @@ onready var selected_tree = ""
 #(vu que le menu est une instance) et ça emet le signal 
 #correspondant a l'arbre selectionné
 
-func _physics_process(delta):
-	$but_confirm.text = String("confirm " + selected_tree + " ?")
-
 func _on_but_tree1_pressed():
 	selected_tree = "tree1"
 	$animplay.play("confirm_appear")
