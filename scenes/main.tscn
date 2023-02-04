@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/lifebar.tscn" type="PackedScene" id=2]
@@ -32,6 +32,34 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -1054 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "Tower_Defense"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("SurfaceViewportContainer:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -754 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SubsurfaceViewportContainer:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -532, -490 ), Vector2( -532, 534 ) ]
+}
+
 [sub_resource type="Animation" id=2]
 resource_name = "root"
 length = 0.5
@@ -45,7 +73,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -564 ), Vector2( 0, -754 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -754 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SubsurfaceViewportContainer:rect_position")
@@ -57,7 +85,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -547, -299 ), Vector2( -532, -490 ) ]
+"values": [ Vector2( -547, 534 ), Vector2( -532, -490 ) ]
 }
 
 [node name="Node3D" type="Node2D"]
@@ -96,6 +124,7 @@ physics_object_picking = true
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
+anims/Tower_Defense = SubResource( 3 )
 anims/root = SubResource( 2 )
 
 [node name="UI" type="Node2D" parent="."]

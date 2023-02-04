@@ -2,7 +2,7 @@ extends Node2D
 
 signal sig_tree_selected(selected_tree, position_x)
 
-onready var selected_tree = ""
+onready var selected_tree = -1
 
 #Quand on clique sur le bouton, ça se connect au parent 
 #(vu que le menu est une instance) et ça emet le signal 
@@ -12,17 +12,17 @@ func _ready():
 	$animplay.play("appear")
 
 func _on_but_tree1_pressed():
-	selected_tree = "tree1"
+	selected_tree = 1
 	$animplay.play("confirm_appear")
 
 
 func _on_but_tree2_pressed():
-	selected_tree = "tree2"
+	selected_tree = 2
 	$animplay.play("confirm_appear")
 
 
 func _on_but_tree3_pressed():
-	selected_tree = "tree3"
+	selected_tree = 3
 	$animplay.play("confirm_appear")
 
 func _on_but_confirm_pressed():
