@@ -4,7 +4,6 @@
 [ext_resource path="res://scenes/root.tscn" type="PackedScene" id=2]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2( 0, 1 )
 
 [node name="background" type="Node2D" parent="."]
 
@@ -13,7 +12,12 @@ position = Vector2( 0, 1 )
 [node name="snake" type="Node2D" parent="."]
 
 [node name="Root" parent="snake" instance=ExtResource( 2 )]
-position = Vector2( 478, 156 )
+position = Vector2( 264, 0 )
+rotation = -1.5708
 
 [node name="Camera2D" type="Camera2D" parent="snake/Root"]
 current = true
+limit_left = 0
+limit_right = 528
+editor_draw_limits = true
+editor_draw_drag_margin = true

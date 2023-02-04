@@ -2,7 +2,7 @@ extends Node2D
 
 var current_level = 1
 var map_set
-var size = 176;
+var size = 176*3;
 var last = Vector2(0, size)
 
 var shape = RectangleShape2D.new()
