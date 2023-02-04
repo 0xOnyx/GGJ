@@ -37,6 +37,7 @@ func _on_but_confirm_pressed():
 func _on_Area2D_mouse_entered():
 	queue_free()
 	$animplay.play_backwards("appear")
+	get_parent().menu_is_here = false
 	$animplay/Timer.start()
 
 

@@ -1,7 +1,7 @@
 extends Node2D
 
 func _on_but_start_pressed():
-	get_tree().change_scene("") #Pour passer a la scene principale de jeu
+	get_tree().change_scene("res://scenes/main.tscn") #Pour passer a la scene principale de jeu
 
 
 func _on_but_option_pressed():
