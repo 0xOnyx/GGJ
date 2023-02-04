@@ -16,6 +16,7 @@ var direction = 1
 func attack(t):
 	target = t;
 	state = State.ATTACKING
+	$Animation.play("smash")
 	$Buff.start()
 
 func _physics_process(delta):
@@ -31,6 +32,7 @@ func _ready():
 func launch():
 	if position.x < 0:
 		direction = 1
+		$Sprite.flip_h = true
 	else:
 		direction = -1 		
 	state = State.MOVING

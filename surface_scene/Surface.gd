@@ -41,9 +41,23 @@ func _ready():
 	var instance = main_tree.instance()
 	instance.position.x = 0
 	instance.position.y = floor_level
+	instance.init_sword(2)
+	trees.append(instance)
 	add_child(instance)
 	launch()
 	pass
+
+func damage_enemy(source, enemy, damage):
+	
+		enemy.HP -= damage
+		enemy.get_node("HP").value -= damage
+		if (enemy.HP <= 0):
+			var tmp = source.targets[0]
+			for tree in trees:
+				if tree.targets.has(enemy):
+					tree.targets.erase(enemy)
+			tmp.queue_free()
+
 
 func _on_SpawnTimer_timeout():
 	if (active && $WaveTimer.time_left >= 2):
