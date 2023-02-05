@@ -3,7 +3,7 @@ extends Node2D
 
 func _on_menu_pressed():
 	g.score = 0
-	g.coins = 0
+	g.coins = 10
 	g.game_state = 0
 	g.nickname = "salut"
 	g.lvl = 1
@@ -15,7 +15,7 @@ func _on_menu_pressed():
 
 func _on_menu2_pressed():
 	g.score = 0
-	g.coins = 0
+	g.coins = 10
 	g.game_state = 0
 	g.nickname = "salut"
 	g.lvl = 1
