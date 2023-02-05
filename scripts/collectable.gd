@@ -29,20 +29,29 @@ func create(biome):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
-	
+
 
 func _on_Collectable_body_entered(body):
 	if (body.get_name() == "Root"):
+		var audio_path
+		if "duck" in $Sprite.texture.resource_path:
+			audio_path = load(str("res://assets/sound/collectible/Canard/Canard.ogg"))
+		if "cristal" in $Sprite.texture.resource_path:
+			audio_path = load(str("res://assets/sound/collectible/Christal/Christal_1.ogg"))
+		if "water" in $Sprite.texture.resource_path:
+			audio_path = load(str("res://assets/sound/collectible/Goute/Goute_1.ogg"))
+		if "gland" in $Sprite.texture.resource_path or "seed" in $Sprite.texture.resource_path:
+			audio_path = load(str("res://assets/sound/collectible/Graine/Graine_1.ogg"))
+		$son.stream = audio_path
 		$DeathParticles.set_emitting(true)
 		$DeathparticlesTimer.start()
 		$Sprite.set_visible(false)
 		$DeathparticlesTimer.wait_time = $DeathParticles.lifetime * 2
 		g.coins += int(type) + 1
 		g.score += int(type) + 1
+		$son.play()
 	else:
 		queue_free()
 
 func _on_DeathparticlesTimer_timeout():
 	queue_free()
-
-

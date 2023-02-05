@@ -56,6 +56,11 @@ func _on_Buff_timeout():
 			atckbool = false
 			if target_type == 0:
 				emit_signal("attack_dmg", 42)
+			else:
+				if target.HP > 0:
+					target.HP -= 10
+				else:
+					target.queue_free()
 			$sound.stream = audio_path
 			$sound.play()
 		else:
