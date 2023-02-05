@@ -1,4 +1,4 @@
-# Born to be root
+# Born to root
 
 ## Game made for the [Global Game Jam Geneva 2023](https://globalgamejam.org/2023/jam-sites/global-game-jam-geneva)
 
