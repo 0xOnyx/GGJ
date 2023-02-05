@@ -43,6 +43,12 @@ func get_input():
 	if Input.is_action_just_released("boost"):
 		g.root_speed = g.root_default_speed
 		g.root_boosted_default_speed = g.root_speed
+	if Input.is_action_just_pressed("dash"):
+		$DashTimer.start()
+		g.root_speed = g.root_default_speed * 2
+		g.root_boosted_default_speed = g.root_speed
+		$DashParticles2D.set_emitting(true)
+		
 
 
 func _physics_process(delta):
@@ -55,12 +61,9 @@ func _physics_process(delta):
 		rot -= PI/8
 	rot += rotation_dir * rotation_speed * delta
 	rot = clamp(rot, -PI+rot_limit, -rot_limit)
-	print("bef: ", rot)
 	rotation = stepify(rot, PI/8)
 	rotation = clamp(rotation, -PI+rot_limit, -rot_limit)
 	
-#	rotation = rot
-	print("aft: ", rotation)
 	velocity = move_and_slide(velocity)
 	var points_count = path_line.points.size()
 	if (points_count > 1):
@@ -78,3 +81,10 @@ func _on_Timer_timeout():
 
 func _on_DeathTimer_timeout():
 	queue_free()
+
+func _on_DashTimer_timeout():
+	print("dashing finished")
+	g.root_speed = g.root_default_speed
+	g.root_boosted_default_speed = g.root_speed
+	$DashParticles2D.set_emitting(false)
+	pass
