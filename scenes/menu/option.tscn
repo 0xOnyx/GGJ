@@ -1,9 +1,40 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/menu/menu_script/option.gd" type="Script" id=1]
 [ext_resource path="res://button_theme.tres" type="Theme" id=2]
 [ext_resource path="res://scenes/menu/volume_slider.gd" type="Script" id=3]
 [ext_resource path="res://assets/sound/menu_click2.ogg" type="AudioStream" id=4]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "here"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6.1, 7.6, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.763, 0.763, 1.0 ]
+}
 
 [node name="option" type="Node2D"]
 script = ExtResource( 1 )
@@ -11,11 +42,29 @@ __meta__ = {
 "_edit_vertical_guides_": [ 960.0 ]
 }
 
+[node name="Label2" type="Label" parent="."]
+margin_left = 56.0
+margin_top = 45.0
+margin_right = 1176.0
+margin_bottom = 490.0
+theme = ExtResource( 2 )
+text = "Actually, we had to put
+a lot of graphics settings
+and other stuff here...
+But you know, jam, no time
+coffein and... we...
+No, for real only the volume
+was useful"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Label2"]
+anims/RESET = SubResource( 1 )
+anims/here = SubResource( 2 )
+
 [node name="HSlider" type="HSlider" parent="."]
-margin_left = 986.0
-margin_top = 652.0
-margin_right = 1519.0
-margin_bottom = 699.0
+margin_left = 694.0
+margin_top = 569.0
+margin_right = 1227.0
+margin_bottom = 616.0
 theme = ExtResource( 2 )
 value = 100.0
 rounded = true
@@ -23,9 +72,9 @@ script = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="HSlider"]
 margin_left = 4.0
-margin_top = -22.0
+margin_top = -76.0
 margin_right = 391.0
-margin_bottom = -6.0
+margin_bottom = -15.0
 text = "Volume"
 
 [node name="son" type="AudioStreamPlayer" parent="."]

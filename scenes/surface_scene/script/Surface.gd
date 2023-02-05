@@ -15,7 +15,7 @@ var active = false
 #Factor that will be multiplied to the level to know the number of enemies to spawn
 const enemies_counts = 15
 #Factor that will be multiplied to the level to know the duration of the waves in milisecond
-var duration = 30 * g.lvl
+var duration = 30
 var wave = 0
 
 func spawn():
@@ -33,7 +33,7 @@ func spawn():
 
 func launch():
 	$WaveTimer.wait_time = duration
-	$SpawnTimer.wait_time = randi()%1 + 5
+	$SpawnTimer.wait_time = randi()% 5 - g.lvl
 	active = true
 	$WaveTimer.start()
 	spawn()
@@ -60,8 +60,7 @@ func damage_enemy(source, enemy, damage):
 		enemy.get_node("HP").value -= damage
 		if (enemy.HP <= 0):
 			emit_signal("enemy_killed", enemy)
-			var rand = randi()%1 + 13
-			var audio_path = load(String("res://assets/sound/death/Mort_"+ String(int(rand)) + ".ogg"))
+			var audio_path = load(String("res://assets/sound/death/Mort_"+ String((randi() % 12) + 1) + ".ogg"))
 			$death_sound.stream = audio_path
 			$death_sound.play()
 			enemy.queue_free()

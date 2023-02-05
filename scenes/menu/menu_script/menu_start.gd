@@ -14,6 +14,7 @@ func _on_but_option_pressed():
 	$son.play()
 	if transform.x.x >= 0:
 		$anim.play("show_hide_option")
+		$option/Label2/AnimationPlayer.play("here")
 	else:
 		$anim.play_backwards("show_hide_option")
 
