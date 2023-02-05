@@ -26,7 +26,7 @@ func _death_signal_recieved():
 	var new_path = copy_me.duplicate()
 
 	$PathsNode2D.add_child(new_path)
-	$Camera2D.position = $RootNode2D.get_node("Root/Node/Camera2D").position
+	$Camera2D.position = $RootNode2D.get_child(0).get_node("Node/Camera2D").position
 	#On rend la cam de mort current pour commencer à la déplacer
 	$Camera2D.make_current()
 	print("ca")
@@ -38,7 +38,6 @@ func calc_tread():
 	if $PathsNode2D.get_child_count() == 0:
 		return
 	for N in $PathsNode2D.get_children():
-		var points = N.get_point_count()
 #		var i = 1
 		var pos = $RootNode2D.get_child(0).position
 #		var l = $RootNode2D.get_child(0).get_node("TreadLine2D").points[0]

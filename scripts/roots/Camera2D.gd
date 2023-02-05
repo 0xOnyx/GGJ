@@ -7,7 +7,7 @@ var pad = 50
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	var parent = get_parent().get_parent().get_position()
 	var v = get_viewport().get_size()
 	position = parent
