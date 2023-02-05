@@ -27,7 +27,7 @@ func _physics_process(delta):
 func _on_end_wave(nb_wave):
 	emit_signal("end_wave")
 	$anim.play("Tower_Defense")
-	$start_wave.wait_time = 20 * g.lvl
+	$start_wave.wait_time = 20
 	$start_wave.start()
 
 func _on_loose():

@@ -36,6 +36,7 @@ func get_input():
 
 
 func _physics_process(delta):
+	
 	get_input()
 	velocity = Vector2(-g.root_speed, 0).rotated(rotation)
 	rotation += rotation_dir * rotation_speed * delta

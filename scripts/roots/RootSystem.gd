@@ -31,7 +31,6 @@ func _death_signal_recieved():
 	$Camera2D.make_current()
 	print("ca")
 	#root_instance()
-	root_instance()
 	calc_tread()
 
 func calc_tread():
@@ -39,7 +38,11 @@ func calc_tread():
 		return
 	for N in $PathsNode2D.get_children():
 #		var i = 1
-		var pos = $RootNode2D.get_child(0).position
+		var c = $RootNode2D.get_child(0)
+		if c == null:
+			return
+		var pos = c.position
+		
 #		var l = $RootNode2D.get_child(0).get_node("TreadLine2D").points[0]
 #		var r = $RootNode2D.get_child(0).get_node("TreadLine2D").points[1]
 		var l = pos - Vector2(10, 0)

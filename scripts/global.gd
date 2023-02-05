@@ -10,8 +10,8 @@ var coins = 0
 var lvl = 1
 # used to communicate between the root node and the
 # tread speed up code wich by necesity happens elsewhere!
-var root_default_speed = 100
+var root_default_speed = 50
 var root_boosted_default_speed = 100
-var root_speed = 100
+var root_speed = 50
 
 var loose = false

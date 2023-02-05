@@ -7,48 +7,12 @@
 [sub_resource type="Animation" id=1]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("but_confirm:rect_size")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 71, 20 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("but_confirm:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("but_confirm:self_modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -74,18 +38,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "confirm_appear"
 length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("but_confirm:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
-}
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1245.38, 909.312 )
@@ -146,15 +98,6 @@ text = "sword(20)"
 clip_text = true
 icon_align = 1
 
-[node name="but_confirm" type="Button" parent="."]
-margin_left = -190.0
-margin_top = 184.0
-margin_right = 126.0
-margin_bottom = 332.0
-rect_min_size = Vector2( 316, 148 )
-theme = ExtResource( 3 )
-text = "confirm ?"
-
 [node name="animplay" type="AnimationPlayer" parent="."]
 autoplay = "appear"
 anims/RESET = SubResource( 1 )
@@ -185,6 +128,5 @@ shape = SubResource( 4 )
 [connection signal="button_down" from="ScrollContainer/VBoxContainer/but_tree1" to="." method="_on_but_tree1_pressed"]
 [connection signal="button_down" from="ScrollContainer/VBoxContainer/but_tree2" to="." method="_on_but_tree2_pressed"]
 [connection signal="button_down" from="ScrollContainer/VBoxContainer/but_tree3" to="." method="_on_but_tree3_pressed"]
-[connection signal="pressed" from="but_confirm" to="." method="_on_but_confirm_pressed"]
 [connection signal="timeout" from="animplay/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
