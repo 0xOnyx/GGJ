@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var speed = 50
+#export (int) var speed = 100
 export (float) var rotation_speed = 1.8
 
 onready var path_line = $N/Path
@@ -26,18 +26,23 @@ func get_input():
 		rotation_dir -= 1
 	if Input.is_action_just_pressed("kill"):
 		_on_Timer_timeout()
-	
+	if Input.is_action_just_pressed("boost"):
+		g.root_speed = 200
+	if Input.is_action_just_released("boost"):
+		g.root_speed = 100
+
 
 func _physics_process(delta):
 	get_input()
-	velocity = Vector2(-speed, 0).rotated(rotation)
+	velocity = Vector2(-g.root_speed, 0).rotated(rotation)
 	rotation += rotation_dir * rotation_speed * delta
 	rotation = clamp(rotation, -PI+rot_limit, -rot_limit)
 	velocity = move_and_slide(velocity)
 	var points_count = path_line.points.size()
 	if (points_count > 1):
 		path_line.set_point_position(points_count - 1, position)
-	
+
+
 func _on_PathPointTimer_timeout():
 	path_line.add_point(position)
 	path_timer.start()
