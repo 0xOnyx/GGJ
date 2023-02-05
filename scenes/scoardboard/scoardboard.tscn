@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://button_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scenes/scoardboard/label.gd" type="Script" id=2]
+[ext_resource path="res://assets/menu/menu_tremplate.png" type="Texture" id=3]
+[ext_resource path="res://assets/menu/button_tree.png" type="Texture" id=4]
+[ext_resource path="res://assets/menu/button_tree_selected.png" type="Texture" id=5]
+[ext_resource path="res://assets/menu/button_tree_hover.png" type="Texture" id=6]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="score" type="Label" parent="."]
+margin_left = 932.0
+margin_top = 312.0
+margin_right = 1082.0
+margin_bottom = 331.0
+rect_pivot_offset = Vector2( 39, 10 )
+theme = ExtResource( 1 )
+text = "Scoreboard"
+
+[node name="your" type="Label" parent="."]
+margin_left = 918.0
+margin_top = 358.0
+margin_right = 1068.0
+margin_bottom = 377.0
+rect_pivot_offset = Vector2( 39, 10 )
+theme = ExtResource( 1 )
+text = "YOUR SCORE"
+align = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 985, 520 )
+scale = Vector2( 2, 2 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="ButtonTreeSelected" type="Sprite" parent="."]
+position = Vector2( 278, 666 )
+texture = ExtResource( 5 )
+
+[node name="ButtonTreeHover" type="Sprite" parent="."]
+position = Vector2( 358, 813 )
+texture = ExtResource( 6 )
+
+[node name="ButtonTree" type="Sprite" parent="."]
+position = Vector2( 234, 104 )
+texture = ExtResource( 4 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 936.0
+margin_top = 377.0
+margin_right = 1362.0
+margin_bottom = 684.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
