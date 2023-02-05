@@ -22,9 +22,10 @@ func spawn():
 	if wave > 0:
 		$SpawnTimer.start()
 		var instance = enemy.instance()
-		var direction = 200
+		var direction = 300
 		if randi() % 2:
-			direction = -200
+			direction = -300
+		instance.HP *= wave
 		instance.position.x = direction
 		instance.position.y = floor_level
 		add_child(instance)

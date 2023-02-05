@@ -15,12 +15,15 @@ var rot_limit = PI/14 # in radians, PI is 180 deg
 var rot
 var control = 0
 
+var can_dash = 1
+
 func _ready():
 	if connect("on_death", get_parent().get_parent(), "_death_signal_recieved"):
 		print("camera stuff")
 	$"%Camera2D".make_current()
 	print("player pos", position)
 	rot = rotation
+	can_dash = 1
 
 func get_input():
 	rotation_dir = 0
@@ -44,10 +47,13 @@ func get_input():
 		g.root_speed = g.root_default_speed
 		g.root_boosted_default_speed = g.root_speed
 	if Input.is_action_just_pressed("dash"):
-		$DashTimer.start()
-		g.root_speed = g.root_default_speed * 2
-		g.root_boosted_default_speed = g.root_speed
-		$DashParticles2D.set_emitting(true)
+		if can_dash == 1:
+			print("starting dash")
+			$DashTimer.start()
+			g.root_speed = g.root_default_speed * 2
+			g.root_boosted_default_speed = g.root_speed
+			can_dash = 0
+			$DashParticles2D.set_emitting(true)
 		
 
 
@@ -87,4 +93,9 @@ func _on_DashTimer_timeout():
 	g.root_speed = g.root_default_speed
 	g.root_boosted_default_speed = g.root_speed
 	$DashParticles2D.set_emitting(false)
+	$DashCoolDownTimer.start()
+
+func _on_DashCoolDownTimer_timeout():
+	print("can dash again!")
+	can_dash = 1
 	pass
