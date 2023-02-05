@@ -38,7 +38,7 @@ func _ready():
 	load_image_to_tilemap(texture, Vector2(size, size), Vector2(0, 0), 0)
 	shape.set_extents(Vector2(size , 10))
 	$Area2D/CollisionShape2D.set_shape(shape)
-	set_deferred("shape", shape)
+#	set_deferred("shape", shape)
 	$Area2D.set_position(Vector2(size / 2, size / 2))
 
 
@@ -90,8 +90,10 @@ func load_image_to_tilemap(texture, size, position, biome):
 	position.x -= padding / 2
 	tilemap.position = position
 	var new_wall = Wall.instance()
-	add_child(new_wall)
-	add_child(tilemap)
+	call_deferred("add_child", new_wall)
+	call_deferred("add_child", tilemap)
+#	add_child(new_wall)
+#	add_child(tilemap)
 
 
 func _on_Area2D_body_entered(body):
@@ -137,7 +139,8 @@ func _on_Area2D_body_entered(body):
 			load_image_to_tilemap(texture, default_size, last , 0)
 
 			last.y += size
-		$Area2D/CollisionShape2D.set_shape(shape)
+#		$Area2D/CollisionShape2D.set_shape(shape)
+		$Area2D/CollisionShape2D.call_deferred("set_shape", shape)
 		$Area2D.set_position(Vector2(size / 2, last.y - (size / 2)))
 
 	var old = $KinematicBody2D/CollisionShape2D.get_position()

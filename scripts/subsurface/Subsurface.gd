@@ -11,6 +11,7 @@ extends Node2D
 func _ready():
 	var v = get_viewport().get_size()
 	$background.position.x = v.x / 2 - $background.get_tile_size() / 2
+	$RootSystemNode2D.launch_test()
 	pass # Replace with function body.
 
 

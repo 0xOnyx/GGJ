@@ -2,6 +2,7 @@ extends Node2D
 
 onready var root = load("res://scenes/root/Root.tscn")
 var child
+var debug = 0
 
 func root_instance():
 	child = root.instance()
@@ -15,7 +16,11 @@ func _physics_process(delta):
 	if $Camera2D.position.y > 50 and $Camera2D.is_current():
 		$Camera2D.position.y -= delta * 250
 	calc_tread()
-	
+
+func launch_test():
+	debug = 1
+	root_instance()
+
 func _death_signal_recieved():
 #	var kids = $RootNode2D.get_children()
 #	print($RootNode2D.get_child_count())
@@ -30,7 +35,8 @@ func _death_signal_recieved():
 	#On rend la cam de mort current pour commencer à la déplacer
 	$Camera2D.make_current()
 	print("ca")
-	#root_instance()
+	if debug == 1:
+		root_instance()
 	calc_tread()
 
 func calc_tread():
