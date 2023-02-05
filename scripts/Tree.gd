@@ -16,7 +16,6 @@ var direction = 1
 var attacked = true
 
 func _ready():
-	print(global_position.x)
 	if global_position.x >= 960:
 		scale.x *= -1
 	if type == 0:
@@ -58,7 +57,6 @@ func attack():
 	if type == Type.GUN and $Buff.is_stopped():
 		$Buff.start()
 		var instance = thorn.instance()
-		instance.direction = direction
 		add_child(instance)
 	if type == Type.MAIN and $Buff.is_stopped():
 		$Buff.start()

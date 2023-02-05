@@ -9,6 +9,7 @@ func root_instance():
 	var viw = get_viewport().size
 	print("here ", viw)
 	child.set_position(Vector2(viw.x/2, 0))
+	$root_sound.play()
 	$RootNode2D.add_child(child)
 
 # Pour bouger la cam de mort pour voir toutes les racines:
@@ -38,6 +39,7 @@ func _death_signal_recieved():
 	if debug == 1:
 		root_instance()
 	calc_tread()
+	$root_sound.stop()
 
 func calc_tread():
 	if g.game_state == 0:

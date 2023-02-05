@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/lifebar.tscn" type="PackedScene" id=2]
@@ -25,33 +25,6 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-
-[sub_resource type="Animation" id=5]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("anim/MainTree:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1e-05, 1e-05 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ColorRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ) ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Tower_Defense"
@@ -232,7 +205,6 @@ stream = ExtResource( 7 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 autoplay = "intro"
-anims/RESET = SubResource( 5 )
 anims/Tower_Defense = SubResource( 3 )
 anims/intro = SubResource( 6 )
 anims/root = SubResource( 2 )
