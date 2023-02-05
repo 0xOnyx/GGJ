@@ -4,6 +4,7 @@ var enemy = preload("res://scenes/surface_scene/Enemy.tscn")
 var main_tree = preload("res://scenes/surface_scene/Tree.tscn")
 
 signal enemy_killed(enemy)
+signal wave(nb_wave)
 
 var floor_level = 0
 #Root HP point when it's 0 game is over
@@ -11,41 +12,34 @@ var root_tree
 #True if it is a surface game turn which means you cannot buy thing
 var active = false
 #Current level
-var lvl = 1
 #Factor that will be multiplied to the level to know the number of enemies to spawn
 const enemies_counts = 15
 #Factor that will be multiplied to the level to know the duration of the waves in milisecond
-var duration = 500 * lvl
-
+var duration = 30 * g.lvl
+var wave = 0
 
 func spawn():
-	$SpawnTimer.start()
-	var instance = enemy.instance()
-	var direction = 200
-	if randi() % 2:
-		direction = -200
-	instance.position.x = direction
-	instance.position.y = floor_level
-	add_child(instance)
-	instance.launch()
+	if wave > 0:
+		$SpawnTimer.start()
+		var instance = enemy.instance()
+		var direction = 200
+		if randi() % 2:
+			direction = -200
+		instance.position.x = direction
+		instance.position.y = floor_level
+		add_child(instance)
+		instance.launch()
 	#Spawn an enemy
 
 func launch():
+	$WaveTimer.wait_time = duration
+	$SpawnTimer.wait_time = randi()%1 + 5
 	active = true
 	$WaveTimer.start()
 	spawn()
 
 func _ready():
-	$WaveTimer.wait_time = duration
-	$SpawnTimer.wait_time = 5
-	var instance = main_tree.instance()
-	instance.position.x = 0
-	instance.position.y = floor_level
-	connect("enemy_killed", instance, "_on_Enemy_Killed")
-	instance.init_bomb()
-	add_child(instance)
-	launch()
-	pass
+	connect("wave", get_tree().root.get_node("Node3D"), "_on_end_wave")
 
 func create_tree(x, type):
 	var instance = main_tree.instance()
@@ -53,8 +47,8 @@ func create_tree(x, type):
 	instance.position.y = floor_level
 	if type == 1:
 		instance.init_sword()
-	#if type == 2:
-	#	instance.init_gun()
+	if type == 2:
+		instance.init_rose()
 	if type == 3:
 		instance.init_bomb()
 	connect("enemy_killed", instance, "_on_Enemy_Killed")
@@ -70,16 +64,37 @@ func damage_enemy(source, enemy, damage):
 
 
 func _on_SpawnTimer_timeout():
-	if (active && $WaveTimer.time_left >= 2):
+	if (active && $WaveTimer.time_left >= 5):
 		spawn()
 
 func _on_WaveTimer_timeout():
 	active = false
-	lvl += 1
-	duration = 30 * 1000 * lvl
+	g.lvl += 1
+	wave += 1
+	duration = 30
 	$WaveTimer.wait_time = duration
-	print_debug("End of wave ")
+	emit_signal("wave", wave)
+	$WaveTimer.stop()
+	match wave:
+		2:
+			get_parent().get_node("tree_slot5").visible = true
+		3:
+			get_parent().get_node("tree_slot2").visible = true
+		4:
+			get_parent().get_node("tree_slot3").visible = true
+		5:
+			get_parent().get_node("tree_slot4").visible = true
 
 func _on_sig_tree_recieved(selected_tree, position_x):
-	print(position_x)
 	add_child(create_tree(position_x, selected_tree))
+
+func _start_wave():
+	launch()
+
+func _start_game():
+	var instance = main_tree.instance()
+	instance.position.x = 0
+	instance.position.y = floor_level
+	add_child(instance)
+	connect("enemy_killed", instance, "_on_Enemy_Killed")
+	launch()

@@ -34,7 +34,6 @@ func explode():
 func _on_Area2D_area_entered(area):
 	if area.get_parent().has_signal("Enemy"):
 		get_parent().get_parent().damage_enemy(get_parent(),area.get_parent(), 30)
-	pass # Replace with function body.
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

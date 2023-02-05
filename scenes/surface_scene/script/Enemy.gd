@@ -17,10 +17,13 @@ var direction = 1
 var atckbool = true
 var rand = randi()% 3 + 1
 
+var target_type
+
 signal attack_dmg(dmg)
 
 func attack(t):
 	target = t;
+	target_type = t.type
 	state = State.ATTACKING	
 	$Animation.play("smash")
 	$Buff.start()
@@ -37,7 +40,6 @@ func _ready():
 	$Buff.wait_time = buff
 	connect("attack_dmg", get_tree().root.get_node("Node3D/UI/lifebar"), "_attacked")
 
-	
 func launch():
 	if position.x < 0:
 		direction = 1
@@ -52,7 +54,8 @@ func _on_Buff_timeout():
 		if atckbool == true:
 			var audio_path = load(str("res://assets/sound/axe"+ str(rand) +".ogg"))
 			atckbool = false
-			emit_signal("attack_dmg", 42)
+			if target_type == 0:
+				emit_signal("attack_dmg", 42)
 			$sound.stream = audio_path
 			$sound.play()
 		else:

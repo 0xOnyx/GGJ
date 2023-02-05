@@ -1,7 +1,7 @@
 extends Area2D
 
-
 var pics = []
+var type = 0
 
 func create(biome):
 	#	print("loaded collectable sprites")
@@ -18,8 +18,8 @@ func create(biome):
 			#if !file_name.ends_with(".import"):
 			pics.append(load(path + "/"  + file_name))
 	dir.list_dir_end()
-	
-	$Sprite.set_texture(pics[rand_range(0, pics.size())])
+	type = rand_range(0, pics.size())
+	$Sprite.set_texture(pics[type])
 	var shape = CircleShape2D.new()
 	shape.set_radius($Sprite.get_texture().get_width()*.4)
 #	var collision = CollisionShape2D.new()
@@ -32,12 +32,12 @@ func _ready():
 	
 
 func _on_Collectable_body_entered(body):
-#	print(body.get_name(), " hit collectable")
 	if (body.get_name() == "Root"):
 		$DeathParticles.set_emitting(true)
 		$DeathparticlesTimer.start()
 		$Sprite.set_visible(false)
 		$DeathparticlesTimer.wait_time = $DeathParticles.lifetime * 2
+		g.coins += int(type) + 1
 	else:
 		queue_free()
 
