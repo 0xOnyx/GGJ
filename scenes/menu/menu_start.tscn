@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/menu/menu_script/menu_start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/option.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/menu/title-Sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/menu/bkgtitle.png" type="Texture" id=7]
 [ext_resource path="res://assets/menu/button_tree.png" type="Texture" id=8]
+[ext_resource path="res://assets/fonts/Title.TTF" type="DynamicFontData" id=9]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -84,7 +85,15 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -1920, 0 ) ]
 }
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="DynamicFont" id=6]
+size = 33
+font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
 
 [node name="menu_start" type="Node2D"]
 script = ExtResource( 1 )
@@ -151,12 +160,15 @@ z_index = 2
 
 [node name="LineEdit" type="LineEdit" parent="."]
 margin_left = 792.0
-margin_top = 423.0
+margin_top = 421.0
 margin_right = 1128.0
-margin_bottom = 464.0
+margin_bottom = 462.0
 custom_colors/cursor_color = Color( 0, 0, 0, 0 )
 custom_colors/font_color = Color( 0.101961, 0, 0, 1 )
-custom_styles/focus = SubResource( 6 )
+custom_fonts/font = SubResource( 6 )
+custom_styles/read_only = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
 align = 1
 max_length = 7
 placeholder_text = "Nickname"
