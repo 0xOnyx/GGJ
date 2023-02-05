@@ -1,6 +1,6 @@
 extends Area2D
 
-var pics = []
+#var pics = []
 var type = 0
 signal heal(hl)
 
@@ -37,6 +37,7 @@ func create(biome):
 #	var collision = CollisionShape2D.new()
 	$CollisionShape2D.set_deferred("shape", shape)
 	$Sprite.set_rotation_degrees(rand_range(0, 180))
+
 
 # using for quick and fun asset addtion duing the dev
 #func create(biome):
