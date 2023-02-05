@@ -30,14 +30,12 @@ shape = SubResource( 1 )
 
 [node name="DefenseArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
-position = Vector2( -72.5002, -49 )
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DefenseArea"]
+position = Vector2( 72, -49 )
 shape = SubResource( 2 )
 
-[node name="DefenseArea_droite" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea_droite"]
-position = Vector2( 72, -49 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
+position = Vector2( -72.5002, -49 )
 shape = SubResource( 2 )
 
 [node name="Buff" type="Timer" parent="."]
@@ -69,6 +67,4 @@ percent_visible = false
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="DefenseArea" to="." method="_on_DefenseArea_area_entered"]
 [connection signal="area_exited" from="DefenseArea" to="." method="_on_DefenseArea_area_exited"]
-[connection signal="area_entered" from="DefenseArea_droite" to="." method="_on_DefenseArea_droite_area_entered"]
-[connection signal="area_exited" from="DefenseArea_droite" to="." method="_on_DefenseArea_droite_area_exited"]
 [connection signal="timeout" from="Buff" to="." method="_on_Buff_timeout"]
