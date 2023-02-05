@@ -5,6 +5,8 @@ enum State {DEAD, MOVING, ATTACKING, NONE}
 
 signal Enemy
 
+onready var tree_spot = load("res://scenes/surface_scene/tree/tree_slot.tscn")
+
 var target
 var speed = 1
 var buff = 0.5
@@ -53,14 +55,17 @@ func _on_Buff_timeout():
 		$Buff.start()
 		if atckbool == true:
 			var audio_path = load(str("res://assets/sound/axe"+ str(rand) +".ogg"))
-			atckbool = false
 			if target_type == 0:
-				emit_signal("attack_dmg", 42)
+				emit_signal("attack_dmg", 10 * lvl)
 			else:
 				if target.HP > 0:
-					target.HP -= 10
+					target.HP -= 10 * lvl
 				else:
+					atckbool = false
+					state = State.MOVING
 					target.queue_free()
+					$Buff.stop()
+					$Animation.play("Walk")
 			$sound.stream = audio_path
 			$sound.play()
 		else:
