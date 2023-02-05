@@ -2,7 +2,8 @@ extends Node2D
 
 func _on_but_start_pressed():
 	$son.play()
-	get_tree().change_scene("res://scenes/main.tscn") #Pour passer a la scene principale de jeu
+	$anim.play("change_scene")
+	#get_tree().change_scene("res://scenes/main.tscn") #Pour passer a la scene principale de jeu
 
 
 func _on_but_option_pressed():
@@ -12,3 +13,8 @@ func _on_but_option_pressed():
 	else:
 		$anim.play_backwards("show_hide_option")
 		
+
+
+func _on_anim_animation_finished(anim_name):
+	if anim_name == "change_scene":
+		get_tree().change_scene("res://scenes/main.tscn")

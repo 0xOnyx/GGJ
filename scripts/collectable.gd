@@ -2,6 +2,7 @@ extends Area2D
 
 var pics = []
 var type = 0
+signal heal(hl)
 
 func create(biome):
 	#	print("loaded collectable sprites")
@@ -28,7 +29,7 @@ func create(biome):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	connect("heal", get_tree().root.get_node("Node3D/UI/lifebar"), "_healed")
 
 
 func _on_Collectable_body_entered(body):
@@ -40,6 +41,7 @@ func _on_Collectable_body_entered(body):
 			audio_path = load(str("res://assets/sound/collectible/Christal/Christal_1.ogg"))
 		if "water" in $Sprite.texture.resource_path:
 			audio_path = load(str("res://assets/sound/collectible/Goute/Goute_1.ogg"))
+			emit_signal("heal", 10)
 		if "gland" in $Sprite.texture.resource_path or "seed" in $Sprite.texture.resource_path:
 			audio_path = load(str("res://assets/sound/collectible/Graine/Graine_1.ogg"))
 		$son.stream = audio_path

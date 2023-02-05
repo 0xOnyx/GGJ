@@ -20,8 +20,10 @@ func _ready() -> void:
 	$start_wave.start()
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		g.coins += 100
+	if Input.is_action_pressed("space"):
+		$start_wave.stop()
+		$start_wave.wait_time = 1
+		$start_wave.start()
 	$UI/coins/Label.text = "Coins: " + String(g.coins) + "\nTime: " + String(int($start_wave.time_left))
 
 func _on_end_wave(nb_wave):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/lifebar.tscn" type="PackedScene" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/sound/music/explo.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/sound/music/constru.ogg" type="AudioStream" id=7]
 [ext_resource path="res://button_theme.tres" type="Theme" id=8]
-[ext_resource path="res://assets/trees/main_tree.png" type="Texture" id=9]
+[ext_resource path="res://assets/trees/main-tree_sheet.png" type="Texture" id=9]
 
 [sub_resource type="TileSet" id=4]
 0/name = "liane.png 0"
@@ -40,6 +40,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 1e-05, 1e-05 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Tower_Defense"
@@ -52,7 +64,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 3 ),
-"transitions": PoolRealArray( 0.353553, 0.0544095 ),
+"transitions": PoolRealArray( 18.3791, 0.0544095 ),
 "update": 0,
 "values": [ Vector2( 0, -754 ), Vector2( 0, 0 ) ]
 }
@@ -71,7 +83,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "intro"
-length = 0.5
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("anim/MainTree:scale")
 tracks/0/interp = 1
@@ -79,10 +91,34 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 0.225313, 0.307786 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1e-05 ), Vector2( 4, 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -111,6 +147,38 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( -547, 200 ), Vector2( -532, -490 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Nouvelle animation"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
 }
 
 [node name="Node3D" type="Node2D"]
@@ -163,6 +231,7 @@ autoplay = true
 stream = ExtResource( 7 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
+autoplay = "intro"
 anims/RESET = SubResource( 5 )
 anims/Tower_Defense = SubResource( 3 )
 anims/intro = SubResource( 6 )
@@ -173,6 +242,12 @@ position = Vector2( 956, 979 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 9 )
 offset = Vector2( 0, -60 )
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="anim/MainTree"]
+autoplay = "Nouvelle animation"
+"anims/Nouvelle animation" = SubResource( 7 )
+anims/RESET = SubResource( 8 )
 
 [node name="UI" type="Node2D" parent="."]
 
@@ -191,5 +266,12 @@ text = "Coins: 0"
 [node name="start_wave" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 1920, 1080 )
+color = Color( 0, 0, 0, 1 )
 
 [connection signal="timeout" from="start_wave" to="." method="_on_start_wave_timeout"]
