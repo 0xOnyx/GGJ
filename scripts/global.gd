@@ -6,6 +6,8 @@ extends Node
 var game_state = 0
 
 var coins = 0
+var score = 0
+var nickname = "salut"
 
 var lvl = 1
 # used to communicate between the root node and the

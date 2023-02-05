@@ -38,6 +38,7 @@ func _on_Collectable_body_entered(body):
 		$Sprite.set_visible(false)
 		$DeathparticlesTimer.wait_time = $DeathParticles.lifetime * 2
 		g.coins += int(type) + 1
+		g.score += int(type) + 1
 	else:
 		queue_free()
 

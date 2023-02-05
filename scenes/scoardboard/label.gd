@@ -8,9 +8,11 @@ var http_request_post = HTTPRequest.new()
 func _ready():
 	add_child(http_request_get)
 	add_child(http_request_post)
+	add_score(g.nickname, g.score)
 	http_request_get.connect("request_completed", self, "_on_request_completed")
 	http_request_get.request("https://born2beroot-1efbb-default-rtdb.europe-west1.firebasedatabase.app/scoreboard.json")
-	add_score("test2", 1234)
+	$value.set_text(String(g.score))
+	
 
 func customComparison(a, b):
 	if typeof(a.score) != typeof(b.score):
@@ -25,12 +27,14 @@ func _on_request_completed(result, response_code, headers, body):
 	
 	for key in json.result:
 		var current = json.result[key]
+		if (tab.size() >= 10):
+			break
 		tab.append(current)
 	
 	tab.sort_custom(self, "customComparison")
 	for current in tab:
 		var label = Label.new()
-		var string_res = "User {} score {}".format([current.nickname, current.score], "{}")
+		var string_res = "{} : {}".format([current.nickname, current.score], "{}")
 		label.set_text(string_res)
 		v_box_container.add_child(label)
 
@@ -42,3 +46,6 @@ func add_score(name, score):
 	if error != OK:
 		 push_error("An error occurred in the HTTP request.")
 	print(error)
+
+
+
