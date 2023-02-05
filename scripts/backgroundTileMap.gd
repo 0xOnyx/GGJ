@@ -101,7 +101,7 @@ func _on_Area2D_body_entered(body):
 		var texture
 		var default_size = Vector2(size, size)
 		var size_transition
-		var size_biome = 6
+		var size_biome = 4
 		
 		
 		if last.y > ( size * ((size_biome * 2) - 1)) + size_none:
