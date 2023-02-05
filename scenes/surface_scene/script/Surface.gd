@@ -25,7 +25,7 @@ func spawn():
 		var direction = 300
 		if randi() % 2:
 			direction = -300
-		instance.HP *= wave
+		instance.HP += 10 * wave
 		instance.position.x = direction
 		instance.position.y = floor_level
 		add_child(instance)
@@ -34,7 +34,7 @@ func spawn():
 
 func launch():
 	$WaveTimer.wait_time = duration
-	$SpawnTimer.wait_time = randi()% 5 - g.lvl
+	$SpawnTimer.wait_time *= 0.65
 	active = true
 	$WaveTimer.start()
 	spawn()

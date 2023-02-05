@@ -7,8 +7,8 @@ signal heal(hl)
 func create(biome):
 	var a1 = load("res://assets/collectables/0/gland.png")
 	var a2 = load("res://assets/collectables/0/seed_final.png")
-	var a0 = load("res://assets/collectables/0/water.png")
-	var a3 = load("res://assets/collectables/0/duck.png")
+	var a3 = load("res://assets/collectables/0/water.png")
+	var a0 = load("res://assets/collectables/0/duck.png")
 	
 	var b0 = load("res://assets/collectables/1/cristal_diamond.png")
 	var b1 = load("res://assets/collectables/1/cristal_final_1.png")
