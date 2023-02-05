@@ -60,8 +60,8 @@ func calc_tread():
 			else:
 #				print("riding on a line!")
 #				print(" p ", P, " O ", O, " r ", r, " l ", l)
-				g.root_speed = 200
+				g.root_speed = g.root_boosted_default_speed * 2
 				return
 			O = P
 #			i = i + 1
-	g.root_speed = 100
+	g.root_speed = g.root_boosted_default_speed

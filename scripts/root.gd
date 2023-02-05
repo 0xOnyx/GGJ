@@ -27,9 +27,11 @@ func get_input():
 	if Input.is_action_just_pressed("kill"):
 		_on_Timer_timeout()
 	if Input.is_action_just_pressed("boost"):
-		g.root_speed = 200
+		g.root_speed = g.root_default_speed * 2
+		g.root_boosted_default_speed = g.root_speed
 	if Input.is_action_just_released("boost"):
-		g.root_speed = 100
+		g.root_speed = g.root_default_speed
+		g.root_boosted_default_speed = g.root_speed
 
 
 func _physics_process(delta):
