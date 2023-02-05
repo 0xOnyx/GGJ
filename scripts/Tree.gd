@@ -15,7 +15,6 @@ var damage = 50
 var direction = 1
 var attacked = true
 
-
 func _ready():
 	if global_position.x <= 960:
 		direction = -1
@@ -24,6 +23,10 @@ func _ready():
 		$TreeLife.visible = true
 	$DefenseArea.position.x *= direction
 	$Willow/WillowTreeAttackSheet.flip_h = direction == -1
+
+func _physics_process(delta):
+	if type == Type.MAIN && g.loose:
+		queue_free()
 
 func init_sword():
 	$DefenseArea.visible = true
@@ -56,6 +59,8 @@ func attack():
 		var instance = thorn.instance()
 		instance.direction = direction
 		add_child(instance)
+	if type == Type.MAIN and $Buff.is_stopped():
+		$Buff.start()
 		
 	if type == Type.SWORD and $Buff.is_stopped():
 		$Buff.start()

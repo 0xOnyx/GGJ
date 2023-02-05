@@ -106,6 +106,7 @@ z_index = 829
 z_as_relative = false
 
 [node name="tree_slot2" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 533, 980 )
 z_index = 829
 z_as_relative = false
@@ -117,11 +118,13 @@ z_index = 829
 z_as_relative = false
 
 [node name="tree_slot4" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 1570, 980 )
 z_index = 829
 z_as_relative = false
 
 [node name="tree_slot5" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 1407, 980 )
 z_index = 829
 z_as_relative = false

@@ -8,3 +8,5 @@ var game_state = 0
 var coins = 0
 
 var lvl = 1
+
+var loose = false
