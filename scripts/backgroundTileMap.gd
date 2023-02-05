@@ -148,7 +148,8 @@ func _on_Area2D_body_entered(body):
 	oldpos += size / 2
 	new_wall.position.y = oldpos
 	new_wall.position.x = -70
-	add_child(new_wall)
+	call_deferred("add_child", new_wall)
+#	add_child(new_wall)
 	
 func get_tile_size():
 	return size
