@@ -87,7 +87,7 @@ func _on_Collectable_body_entered(body):
 		$DeathparticlesTimer.wait_time = $DeathParticles.lifetime * 2
 		g.coins += int(type) + 2
 		g.score += int(type) + 2
-		$Label.text = "+" + String(int(type) + 1)
+		$Label.text = "+" + String(int(type) + 2)
 		$son.play()
 		$anim.play("+1")
 	else:
