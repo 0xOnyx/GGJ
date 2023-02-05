@@ -4,6 +4,7 @@ var enemy = preload("res://scenes/surface_scene/Enemy.tscn")
 var main_tree = preload("res://scenes/surface_scene/Tree.tscn")
 
 signal enemy_killed(enemy)
+signal wave(nb_wave)
 
 var floor_level = 0
 #Root HP point when it's 0 game is over
@@ -15,33 +16,30 @@ var active = false
 const enemies_counts = 15
 #Factor that will be multiplied to the level to know the duration of the waves in milisecond
 var duration = 30 * g.lvl
-
+var wave = 0
 
 func spawn():
-	$SpawnTimer.start()
-	var instance = enemy.instance()
-	var direction = 200
-	if randi() % 2:
-		direction = -200
-	instance.position.x = direction
-	instance.position.y = floor_level
-	add_child(instance)
-	instance.launch()
+	if wave > 0:
+		$SpawnTimer.start()
+		var instance = enemy.instance()
+		var direction = 200
+		if randi() % 2:
+			direction = -200
+		instance.position.x = direction
+		instance.position.y = floor_level
+		add_child(instance)
+		instance.launch()
 	#Spawn an enemy
 
 func launch():
+	$WaveTimer.wait_time = duration
+	$SpawnTimer.wait_time = randi()%1 + 5
 	active = true
 	$WaveTimer.start()
 	spawn()
 
 func _ready():
-	$WaveTimer.wait_time = duration
-	$SpawnTimer.wait_time = randi()%1 + 5
-	var instance = main_tree.instance()
-	instance.position.x = 0
-	instance.position.y = floor_level
-	connect("enemy_killed", instance, "_on_Enemy_Killed")
-	add_child(instance)
+	connect("wave", get_tree().root.get_node("Node3D"), "_on_end_wave")
 
 func create_tree(x, type):
 	var instance = main_tree.instance()
@@ -72,10 +70,31 @@ func _on_SpawnTimer_timeout():
 func _on_WaveTimer_timeout():
 	active = false
 	g.lvl += 1
+	wave += 1
 	duration = 30 * g.lvl
 	$WaveTimer.wait_time = duration
-	print_debug("End of wave ")
+	emit_signal("wave", wave)
 	$WaveTimer.stop()
+	match wave:
+		1:
+			get_parent().get_node("tree_slot5").visible = true
+		2:
+			get_parent().get_node("tree_slot2").visible = true
+		3:
+			get_parent().get_node("tree_slot3").visible = true
+		4:
+			get_parent().get_node("tree_slot4").visible = true
 
 func _on_sig_tree_recieved(selected_tree, position_x):
 	add_child(create_tree(position_x, selected_tree))
+
+func _start_wave():
+	launch()
+
+func _start_game():
+	var instance = main_tree.instance()
+	instance.position.x = 0
+	instance.position.y = floor_level
+	add_child(instance)
+	connect("enemy_killed", instance, "_on_Enemy_Killed")
+	launch()

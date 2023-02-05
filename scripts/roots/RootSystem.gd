@@ -29,6 +29,7 @@ func _death_signal_recieved():
 	$Camera2D.position = $RootNode2D.get_node("Root/Node/Camera2D").position
 	#On rend la cam de mort current pour commencer à la déplacer
 	$Camera2D.make_current()
+	print("ca")
 	#root_instance()
 	root_instance()
 	calc_tread()

@@ -13,3 +13,5 @@ var lvl = 1
 var root_default_speed = 100
 var root_boosted_default_speed = 100
 var root_speed = 100
+
+var loose = false
