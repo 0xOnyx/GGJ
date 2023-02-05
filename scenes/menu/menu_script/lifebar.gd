@@ -12,3 +12,7 @@ func _physics_process(delta):
 
 func _attacked(dmg):
 	$LifebarFill.position.x -= dmg
+
+func _healed(hl):
+	if $LifebarFill.position.x < 0:
+		$LifebarFill.position.x += hl * g.lvl

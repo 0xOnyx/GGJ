@@ -16,7 +16,6 @@ var direction = 1
 var attacked = true
 
 func _ready():
-	print(global_position.x)
 	if global_position.x >= 960:
 		scale.x *= -1
 	if type == 0:
@@ -37,7 +36,7 @@ func init_sword():
 
 func init_bomb():
 	$Bomb.visible = true
-	$Buff.wait_time = 2 
+	$Buff.wait_time = 2
 	type = Type.BOMB
 
 func init_rose():
@@ -59,7 +58,6 @@ func attack():
 	if type == Type.GUN and $Buff.is_stopped():
 		$Buff.start()
 		var instance = thorn.instance()
-		instance.direction = direction
 #		add_child(instance)
 		call_deferred("add_child", instance)
 	if type == Type.MAIN and $Buff.is_stopped():
@@ -77,7 +75,7 @@ func _on_Area2D_area_entered(area):
 	print(area.name)
 	if area.get_parent().has_method("attack") and "Enemy" in area.get_parent().name:
 		area.get_parent().attack(self)
-	pass # Replace with function body.	
+	pass # Replace with function body.
 
 func _on_DefenseArea_area_entered(area):
 	direction = -1#Il faudrait faire ça s'il n'est pas déjà encore entrain d'attaquer
