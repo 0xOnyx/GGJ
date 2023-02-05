@@ -56,10 +56,10 @@ func _on_Buff_timeout():
 		if atckbool == true:
 			var audio_path = load(str("res://assets/sound/axe"+ str(rand) +".ogg"))
 			if target_type == 0:
-				emit_signal("attack_dmg", 42)
+				emit_signal("attack_dmg", 10 * lvl)
 			else:
 				if target.HP > 0:
-					target.HP -= 10
+					target.HP -= 10 * lvl
 				else:
 					atckbool = false
 					state = State.MOVING
