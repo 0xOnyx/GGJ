@@ -11,11 +11,10 @@ var root_tree
 #True if it is a surface game turn which means you cannot buy thing
 var active = false
 #Current level
-var lvl = 1
 #Factor that will be multiplied to the level to know the number of enemies to spawn
 const enemies_counts = 15
 #Factor that will be multiplied to the level to know the duration of the waves in milisecond
-var duration = 500 * lvl
+var duration = 30 * g.lvl
 
 
 func spawn():
@@ -37,15 +36,12 @@ func launch():
 
 func _ready():
 	$WaveTimer.wait_time = duration
-	$SpawnTimer.wait_time = 5
+	$SpawnTimer.wait_time = randi()%1 + 5
 	var instance = main_tree.instance()
 	instance.position.x = 0
 	instance.position.y = floor_level
 	connect("enemy_killed", instance, "_on_Enemy_Killed")
-	instance.init_bomb()
 	add_child(instance)
-	launch()
-	pass
 
 func create_tree(x, type):
 	var instance = main_tree.instance()
@@ -53,8 +49,8 @@ func create_tree(x, type):
 	instance.position.y = floor_level
 	if type == 1:
 		instance.init_sword()
-	#if type == 2:
-	#	instance.init_gun()
+	if type == 2:
+		instance.init_rose()
 	if type == 3:
 		instance.init_bomb()
 	connect("enemy_killed", instance, "_on_Enemy_Killed")
@@ -70,16 +66,16 @@ func damage_enemy(source, enemy, damage):
 
 
 func _on_SpawnTimer_timeout():
-	if (active && $WaveTimer.time_left >= 2):
+	if (active && $WaveTimer.time_left >= 5):
 		spawn()
 
 func _on_WaveTimer_timeout():
 	active = false
-	lvl += 1
-	duration = 30 * 1000 * lvl
+	g.lvl += 1
+	duration = 30 * g.lvl
 	$WaveTimer.wait_time = duration
 	print_debug("End of wave ")
+	$WaveTimer.stop()
 
 func _on_sig_tree_recieved(selected_tree, position_x):
-	print(position_x)
 	add_child(create_tree(position_x, selected_tree))

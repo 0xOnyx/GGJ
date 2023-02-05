@@ -5,6 +5,7 @@ var map_set
 var size_none = 176
 var size = size_none * 3;
 var last = Vector2(0, size)
+var oldpos = 0
 
 var shape = RectangleShape2D.new()
 var noise_collectable = OpenSimplexNoise.new()
@@ -13,6 +14,7 @@ var noise_rock = OpenSimplexNoise.new()
 onready var Collectable = preload("res://scenes/collectable/Collectable.tscn")
 onready var Rock = preload("res://scenes/obstacle/Obstacle.tscn")
 onready var Marmotte = preload("res://scenes/obstacle/marmote.tscn")
+onready var Wall = preload("res://scenes/wall.tscn")
 var padding = (size_none * 3)
 
 func _ready():
@@ -87,10 +89,8 @@ func load_image_to_tilemap(texture, size, position, biome):
 	tilemap.z_index = -1
 	position.x -= padding / 2
 	tilemap.position = position
-	$KinematicBody2D/CollisionShape2D.set_position(Vector2(position.x, size.y / 2))
-	$KinematicBody2D/CollisionShape2D.shape.set_extents(Vector2(10, 150))
-	$KinematicBody2D/CollisionShape2D2.set_position(Vector2(size.x + (padding / 2), size.y / 2))
-	$KinematicBody2D/CollisionShape2D2.shape.set_extents(Vector2(10, 150))
+	var new_wall = Wall.instance()
+	add_child(new_wall)
 	add_child(tilemap)
 
 
@@ -144,6 +144,11 @@ func _on_Area2D_body_entered(body):
 	$KinematicBody2D/CollisionShape2D.set_position(Vector2(old.x, last.y - (size / 2)))
 	old = $KinematicBody2D/CollisionShape2D2.get_position()
 	$KinematicBody2D/CollisionShape2D2.set_position(Vector2(old.x, last.y - (size / 2)))
+	var new_wall = Wall.instance()
+	oldpos += size / 2
+	new_wall.position.y = oldpos
+	new_wall.position.x = -70
+	add_child(new_wall)
 	
 func get_tile_size():
 	return size

@@ -1,9 +1,6 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var loose_sc = preload("res://scenes/surface_scene/tree/loose.tscn")
 
 var root_or_td = 0
 
@@ -19,3 +16,9 @@ func _physics_process(delta):
 		else:
 			root_or_td = 0
 			$anim.play("Tower_Defense")
+	$UI/coins/Label.text = "Coins: " + String(g.coins)
+
+func _on_loose():
+	g.game_state = 0 # Pour savoir partout que c fini
+	var ins = loose_sc.instance()
+	add_child(ins)

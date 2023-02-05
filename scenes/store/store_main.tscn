@@ -120,7 +120,8 @@ margin_bottom = 148.0
 rect_min_size = Vector2( 324, 148 )
 theme = ExtResource( 3 )
 toggle_mode = true
-text = "Arbre 1"
+text = "Bomb(10)"
+clip_text = true
 icon_align = 1
 
 [node name="but_tree2" type="Button" parent="ScrollContainer/VBoxContainer"]
@@ -130,7 +131,8 @@ margin_bottom = 300.0
 rect_min_size = Vector2( 324, 148 )
 theme = ExtResource( 3 )
 toggle_mode = true
-text = "Arbre 2"
+text = "sniper(15)"
+clip_text = true
 icon_align = 1
 
 [node name="but_tree3" type="Button" parent="ScrollContainer/VBoxContainer"]
@@ -140,14 +142,15 @@ margin_bottom = 452.0
 rect_min_size = Vector2( 324, 148 )
 theme = ExtResource( 3 )
 toggle_mode = true
-text = "Arbre 3"
+text = "sword(20)"
+clip_text = true
 icon_align = 1
 
 [node name="but_confirm" type="Button" parent="."]
-margin_left = -142.0
-margin_top = 171.0
-margin_right = 174.0
-margin_bottom = 319.0
+margin_left = -190.0
+margin_top = 184.0
+margin_right = 126.0
+margin_bottom = 332.0
 rect_min_size = Vector2( 316, 148 )
 theme = ExtResource( 3 )
 text = "confirm ?"

@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/menu/menu_script/menu_start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/option.tscn" type="PackedScene" id=2]
 [ext_resource path="res://button_theme.tres" type="Theme" id=3]
+[ext_resource path="res://assets/sound/menu_click1.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/sound/music/menu_sound.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/bckg/menu_bckgpng.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -41,20 +44,25 @@ __meta__ = {
 "_edit_vertical_guides_": [ 960.0 ]
 }
 
+[node name="MenuBckgpng" type="Sprite" parent="."]
+scale = Vector2( 1.92, 1.92 )
+texture = ExtResource( 6 )
+centered = false
+
 [node name="but_start" type="Button" parent="."]
 margin_left = 802.0
-margin_top = 602.0
+margin_top = 522.0
 margin_right = 1118.0
-margin_bottom = 706.0
+margin_bottom = 626.0
 theme = ExtResource( 3 )
 text = "Play"
 icon_align = 1
 
 [node name="but_option" type="Button" parent="."]
 margin_left = 802.0
-margin_top = 732.0
+margin_top = 652.0
 margin_right = 1118.0
-margin_bottom = 836.0
+margin_bottom = 756.0
 theme = ExtResource( 3 )
 text = "option"
 icon_align = 1
@@ -65,6 +73,14 @@ anims/show_hide_option = SubResource( 2 )
 
 [node name="option" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1920, 0 )
+
+[node name="son" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 10.0
+
+[node name="menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
 
 [connection signal="pressed" from="but_start" to="." method="_on_but_start_pressed"]
 [connection signal="pressed" from="but_option" to="." method="_on_but_option_pressed"]

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var speed = 100
+export (int) var speed = 50
 export (float) var rotation_speed = 1.8
 
 onready var path_line = $N/Path
@@ -26,10 +26,6 @@ func get_input():
 		rotation_dir -= 1
 	if Input.is_action_just_pressed("kill"):
 		_on_Timer_timeout()
-	if Input.is_action_just_pressed("boost"):
-		speed = 200
-	if Input.is_action_just_released("boost"):
-		speed = 100
 	
 
 func _physics_process(delta):
@@ -48,7 +44,6 @@ func _on_PathPointTimer_timeout():
 
 
 func _on_Timer_timeout():
-	print("i died")
 	emit_signal("on_death")#, get_tree().root.get_node("Root/N/Path"))
 	$DeathTimer.start()
 

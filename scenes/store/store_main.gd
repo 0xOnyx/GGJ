@@ -12,17 +12,20 @@ func _ready():
 	$animplay.play("appear")
 
 func _on_but_tree1_pressed():
-	selected_tree = 1
+	if g.coins >= 10:
+		selected_tree = 1
 	$animplay.play("confirm_appear")
 
 
 func _on_but_tree2_pressed():
-	selected_tree = 2
+	if g.coins >= 15:
+		selected_tree = 2
 	$animplay.play("confirm_appear")
 
 
 func _on_but_tree3_pressed():
-	selected_tree = 3
+	if g.coins >= 20:
+		selected_tree = 3
 	$animplay.play("confirm_appear")
 
 func _unpress():
@@ -30,19 +33,20 @@ func _unpress():
 	$animplay.play_backwards("confirm_appear")
 
 func _on_but_confirm_pressed():
-	var posx_to_send = get_parent().position.x
-	connect("sig_tree_selected", get_parent().get_parent().get_node("Surface"), "_on_sig_tree_recieved")
-	if posx_to_send < 960:
-		posx_to_send = 960 - posx_to_send
-		posx_to_send *= -1
-	else:
-		posx_to_send -= 960
-	posx_to_send /= 4
+	if selected_tree > 0:
+		var posx_to_send = get_parent().position.x
+		connect("sig_tree_selected", get_parent().get_parent().get_node("Surface"), "_on_sig_tree_recieved")
+		if posx_to_send < 960:
+			posx_to_send = 960 - posx_to_send
+			posx_to_send *= -1
+		else:
+			posx_to_send -= 960
+		posx_to_send /= 4
 
-	emit_signal("sig_tree_selected", selected_tree, posx_to_send)
-	$animplay.play_backwards("appear")
-	$animplay/Timer.start()
-	get_parent().queue_free()
+		emit_signal("sig_tree_selected", selected_tree, posx_to_send)
+		$animplay.play_backwards("appear")
+		$animplay/Timer.start()
+		get_parent().queue_free()
 
 #Les anims play c'est pour quand ce sera bon pour faire jolie
 
