@@ -68,7 +68,7 @@ func attack():
 		$Buff.start()
 		$Willow/attack.play("attack")
 		if attacked and targets.size() > 0:
-			get_parent().damage_enemy(self, targets[0], 15)
+			get_parent().damage_enemy(self, targets[0], 33)
 		attacked = not attacked;
 
 func _on_Area2D_area_entered(area):

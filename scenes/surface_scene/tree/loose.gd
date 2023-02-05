@@ -23,4 +23,4 @@ func _on_menu2_pressed():
 	g.root_boosted_default_speed = 100
 	g.root_speed = 50
 	g.loose = false
-	get_tree().change_scene("res://scenes/main.tscn")
+	get_tree().change_scene("res://scenes/menu_start.tscn")
