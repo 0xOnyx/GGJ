@@ -40,10 +40,14 @@ func _death_signal_recieved():
 	calc_tread()
 
 func calc_tread():
+	if g.game_state == 0:
+		return
 	if $PathsNode2D.get_child_count() == 0:
 		return
 	for N in $PathsNode2D.get_children():
 #		var i = 1
+		if $RootNode2D.get_child_count() == 0:
+			return
 		var c = $RootNode2D.get_child(0)
 		if c == null:
 			return
