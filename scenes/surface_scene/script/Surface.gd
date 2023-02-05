@@ -75,15 +75,18 @@ func _on_WaveTimer_timeout():
 	$WaveTimer.wait_time = duration
 	emit_signal("wave", wave)
 	$WaveTimer.stop()
-	match wave:
-		2:
-			get_parent().get_node("tree_slot5").visible = true
-		3:
-			get_parent().get_node("tree_slot2").visible = true
-		4:
-			get_parent().get_node("tree_slot3").visible = true
-		5:
-			get_parent().get_node("tree_slot4").visible = true
+	if get_parent().get_node("tree_slot").visible == false:
+		get_parent().get_node("tree_slot").visible = true
+	elif get_parent().get_node("tree_slot2").visible == false:
+		get_parent().get_node("tree_slot2").visible = true
+	elif get_parent().get_node("tree_slot3").visible == false:
+		get_parent().get_node("tree_slot3").visible = true
+	elif get_parent().get_node("tree_slot4").visible == false:
+		get_parent().get_node("tree_slot4").visible = true
+	elif get_parent().get_node("tree_slot5").visible == false:
+		get_parent().get_node("tree_slot5").visible = true
+	elif get_parent().get_node("tree_slot6").visible == false:
+		get_parent().get_node("tree_slot6").visible = true
 
 func _on_sig_tree_recieved(selected_tree, position_x):
 	add_child(create_tree(position_x, selected_tree))

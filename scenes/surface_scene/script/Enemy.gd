@@ -63,7 +63,7 @@ func _on_Buff_timeout():
 				else:
 					atckbool = false
 					state = State.MOVING
-					target.queue_free()
+					target.visible = false
 					$Buff.stop()
 					$Animation.play("Walk")
 			$sound.stream = audio_path

@@ -20,6 +20,8 @@ func _ready() -> void:
 	$start_wave.start()
 
 func _physics_process(delta):
+	if Input.is_action_pressed("ui_cancel"):
+		get_tree().quit()
 	if Input.is_action_pressed("space") && g.game_state == 2:
 		$start_wave.stop()
 		$start_wave.wait_time = 1
@@ -31,7 +33,7 @@ func _on_end_wave(nb_wave):
 	$anim.play("Tower_Defense")
 	$start_wave.wait_time = 20
 	$start_wave.start()
-	g.game_state == 2
+	g.game_state == 1
 
 func _on_loose():
 	g.game_state = 0 # Pour savoir partout que c fini
@@ -45,7 +47,7 @@ func _on_start_wave_timeout():
 	if g.game_state == 0:
 		emit_signal("start_game")
 		$anim/MainTree.queue_free()
-		g.game_state = 1
+		g.game_state = 2
 	else:
 		emit_signal("start_wave")
 	$anim.play("root")
