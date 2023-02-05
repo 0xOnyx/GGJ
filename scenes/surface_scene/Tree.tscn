@@ -11,7 +11,7 @@
 extents = Vector2( 10, 14.4167 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 112.062, 10 )
+extents = Vector2( 48, 10 )
 
 [node name="Tree" type="Node2D"]
 script = ExtResource( 1 )
@@ -31,7 +31,13 @@ shape = SubResource( 1 )
 [node name="DefenseArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea"]
-position = Vector2( 0.0615005, -49 )
+position = Vector2( -72.5002, -49 )
+shape = SubResource( 2 )
+
+[node name="DefenseArea_droite" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DefenseArea_droite"]
+position = Vector2( 72, -49 )
 shape = SubResource( 2 )
 
 [node name="Buff" type="Timer" parent="."]
@@ -63,4 +69,6 @@ percent_visible = false
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_entered" from="DefenseArea" to="." method="_on_DefenseArea_area_entered"]
 [connection signal="area_exited" from="DefenseArea" to="." method="_on_DefenseArea_area_exited"]
+[connection signal="area_entered" from="DefenseArea_droite" to="." method="_on_DefenseArea_droite_area_entered"]
+[connection signal="area_exited" from="DefenseArea_droite" to="." method="_on_DefenseArea_droite_area_exited"]
 [connection signal="timeout" from="Buff" to="." method="_on_Buff_timeout"]
