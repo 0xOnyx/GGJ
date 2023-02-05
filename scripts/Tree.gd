@@ -16,6 +16,7 @@ var direction = 1
 var attacked = true
 
 func _ready():
+	print(global_position.x)
 	if global_position.x <= 960:
 		direction = -1
 	if type == 0:

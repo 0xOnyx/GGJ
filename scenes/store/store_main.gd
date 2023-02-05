@@ -11,8 +11,8 @@ func _ready():
 	$animplay.play("appear")
 
 func _on_but_tree1_pressed():
-	if g.coins >= 10:
-		g.coins -= 10
+	if g.coins >= 20:
+		g.coins -= 20
 		_spawn_tree(1)
 
 
@@ -23,8 +23,8 @@ func _on_but_tree2_pressed():
 
 
 func _on_but_tree3_pressed():
-	if g.coins >= 20:
-		g.coins -= 20
+	if g.coins >= 10:
+		g.coins -= 10
 		_spawn_tree(3)
 
 #Les anims play c'est pour quand ce sera bon pour faire jolie
