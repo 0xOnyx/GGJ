@@ -14,7 +14,8 @@ func root_instance():
 func _physics_process(delta):
 	if $Camera2D.position.y > 50 and $Camera2D.is_current():
 		$Camera2D.position.y -= delta * 250
-
+	calc_tread()
+	
 func _death_signal_recieved():
 #	var kids = $RootNode2D.get_children()
 #	print($RootNode2D.get_child_count())
@@ -30,9 +31,6 @@ func _death_signal_recieved():
 	$Camera2D.make_current()
 	#root_instance()
 	root_instance()
-	calc_tread()
-
-func _physics_process(delta):
 	calc_tread()
 
 func calc_tread():
