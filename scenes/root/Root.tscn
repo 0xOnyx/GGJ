@@ -99,7 +99,7 @@ emitting = false
 amount = 20
 lifetime = 0.27
 emission_shape = 1
-emission_sphere_radius = 6.33
+emission_sphere_radius = 5.5
 direction = Vector2( 0, -1 )
 spread = 25.85
 gravity = Vector2( 0, 0 )
@@ -110,7 +110,11 @@ scale_amount_random = 1.0
 color = Color( 0.145098, 0.592157, 0.898039, 0.752941 )
 hue_variation_random = 0.37
 
+[node name="DashCoolDownTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="N/PathPointTimer" to="." method="_on_PathPointTimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]
+[connection signal="timeout" from="DashCoolDownTimer" to="." method="_on_DashCoolDownTimer_timeout"]
