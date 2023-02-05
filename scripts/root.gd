@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 #export (int) var speed = 100
-export (float) var rotation_speed = 1.8
+export (float) var rotation_speed = 2
 
 onready var path_line = $N/Path
 onready var path_timer = $N/PathPointTimer
@@ -10,7 +10,7 @@ signal on_death
 
 var velocity = Vector2()
 var rotation_dir = 0
-var rot_limit = PI/16 # in radians, PI is 180 deg
+var rot_limit = PI/14 # in radians, PI is 180 deg
 
 var rot
 
@@ -47,6 +47,8 @@ func _physics_process(delta):
 	rot = clamp(rot, -PI+rot_limit, -rot_limit)
 	print("bef: ", rot)
 	rotation = stepify(rot, PI/8)
+	rotation = clamp(rotation, -PI+rot_limit, -rot_limit)
+	
 #	rotation = rot
 	print("aft: ", rotation)
 	velocity = move_and_slide(velocity)
