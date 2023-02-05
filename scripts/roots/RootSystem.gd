@@ -40,16 +40,28 @@ func calc_tread():
 		return
 	for N in $PathsNode2D.get_children():
 		var points = N.get_point_count()
-		var i = 1
-		var O = N.points[0]
-		var l = $RootNode2D.get_child(0).get_node("TreadLine2D").points[0]
-		var r = $RootNode2D.get_child(0).get_node("TreadLine2D").points[0]
+#		var i = 1
+		var pos = $RootNode2D.get_child(0).position
+#		var l = $RootNode2D.get_child(0).get_node("TreadLine2D").points[0]
+#		var r = $RootNode2D.get_child(0).get_node("TreadLine2D").points[1]
+		var l = pos - Vector2(10, 0)
+		var r = pos + Vector2(10, 0)
+#		print(" { ", l, ", ", r, " } ")
+#		print("pos ", pos)
 #		print("- "+N.get_name(), "  len:", points)
+		var O = N.points[0]
 		for P in N.points:
 #			if i % 7 == 0 && Geometry.segment_intersects_segment_2d(old, P, l, r) == null:
-			if Geometry.segment_intersects_segment_2d(P, O, r, l) == null:
-				print(" p ", P, " O ", O, " r ", r, " l ", l)
-				O = P
-#			if (i % 7 == 0 && segment_intersects_segment_2d(old, P, 1, 2) == null):
-#				print("skldfjlksdj")
-			i = i + 1
+#			if i % 7 == 0:
+			var foo = Geometry.segment_intersects_segment_2d(P, O, r, l)
+			if foo == null:
+				pass
+#					print("not on a line")
+			else:
+#				print("riding on a line!")
+#				print(" p ", P, " O ", O, " r ", r, " l ", l)
+				g.root_speed = 200
+				return
+			O = P
+#			i = i + 1
+	g.root_speed = 100

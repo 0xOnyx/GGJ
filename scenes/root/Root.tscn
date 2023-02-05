@@ -88,7 +88,7 @@ color = Color( 0.376471, 0.266667, 0.266667, 0.752941 )
 [node name="TreadLine2D" type="Line2D" parent="."]
 position = Vector2( 13, 4.57764e-05 )
 points = PoolVector2Array( -4.99997, -7.00002, -5.00003, 6.99998 )
-default_color = Color( 0.4, 0.501961, 1, 0 )
+default_color = Color( 0.705882, 0.168627, 0.12549, 0.658824 )
 
 [connection signal="timeout" from="N/PathPointTimer" to="." method="_on_PathPointTimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
