@@ -16,8 +16,9 @@ var direction = 1
 var attacked = true
 
 func _ready():
-	if global_position.x <= 960:
-		direction = -1
+	print(global_position.x)
+	if global_position.x >= 960:
+		scale.x *= -1
 	if type == 0:
 		$HP.visible = false
 		$TreeLife.visible = true
@@ -61,7 +62,8 @@ func attack():
 		add_child(instance)
 	if type == Type.MAIN and $Buff.is_stopped():
 		$Buff.start()
-		
+		if attacked and targets.size() > 0:
+			get_parent().damage_enemy(self, targets[0], 10 * (lvl * 2))
 	if type == Type.SWORD and $Buff.is_stopped():
 		$Buff.start()
 		$Willow/attack.play("attack")

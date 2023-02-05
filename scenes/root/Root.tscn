@@ -85,6 +85,10 @@ scale_amount = 2.0
 scale_amount_random = 1.0
 color = Color( 0.376471, 0.266667, 0.266667, 0.752941 )
 
+[node name="ClickDirTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="N/PathPointTimer" to="." method="_on_PathPointTimer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]

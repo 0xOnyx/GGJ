@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 #export (int) var speed = 100
-export (float) var rotation_speed = 1.8
+export (float) var rotation_speed = 2
 
 onready var path_line = $N/Path
 onready var path_timer = $N/PathPointTimer
@@ -10,13 +10,16 @@ signal on_death
 
 var velocity = Vector2()
 var rotation_dir = 0
-var rot_limit = PI/16 # in radians, PI is 180 deg
+var rot_limit = PI/14 # in radians, PI is 180 deg
+
+var rot
 
 func _ready():
 	if connect("on_death", get_parent().get_parent(), "_death_signal_recieved"):
 		print("camera stuff")
 	$"%Camera2D".make_current()
 	print("player pos", position)
+	rot = rotation
 
 func get_input():
 	rotation_dir = 0
@@ -26,6 +29,7 @@ func get_input():
 	if Input.is_action_pressed("right"):
 		rotation_dir -= 1
 	if Input.is_action_just_pressed("kill"):
+		emit_signal("on_death")
 		_on_Timer_timeout()
 	if Input.is_action_just_pressed("boost"):
 		g.root_speed = g.root_default_speed * 2
@@ -39,8 +43,14 @@ func _physics_process(delta):
 	
 	get_input()
 	velocity = Vector2(-g.root_speed, 0).rotated(rotation)
-	rotation += rotation_dir * rotation_speed * delta
+	rot += rotation_dir * rotation_speed * delta
+	rot = clamp(rot, -PI+rot_limit, -rot_limit)
+	print("bef: ", rot)
+	rotation = stepify(rot, PI/8)
 	rotation = clamp(rotation, -PI+rot_limit, -rot_limit)
+	
+#	rotation = rot
+	print("aft: ", rotation)
 	velocity = move_and_slide(velocity)
 	var points_count = path_line.points.size()
 	if (points_count > 1):
