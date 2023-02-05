@@ -65,6 +65,7 @@ func _on_Buff_timeout():
 					state = State.MOVING
 					target.visible = false
 					$Buff.stop()
+					$sound.stop()
 					$Animation.play("Walk")
 			$sound.stream = audio_path
 			$sound.play()

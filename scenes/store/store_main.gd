@@ -43,7 +43,6 @@ func _spawn_tree(selected_tree):
 		emit_signal("sig_tree_selected", selected_tree, posx_to_send)
 		$animplay.play_backwards("appear")
 		$animplay/Timer.start()
-		get_parent().queue_free()
 
 func _on_Area2D_mouse_entered():
 	$animplay.play_backwards("appear")

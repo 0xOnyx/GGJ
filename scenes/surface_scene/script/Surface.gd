@@ -60,6 +60,10 @@ func damage_enemy(source, enemy, damage):
 		enemy.get_node("HP").value -= damage
 		if (enemy.HP <= 0):
 			emit_signal("enemy_killed", enemy)
+			var rand = randi()%1 + 13
+			var audio_path = load(String("res://assets/sound/death/Mort_"+ String(int(rand)) + ".ogg"))
+			$death_sound.stream = audio_path
+			$death_sound.play()
 			enemy.queue_free()
 
 

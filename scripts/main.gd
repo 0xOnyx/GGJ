@@ -22,7 +22,7 @@ func _ready() -> void:
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
-	if Input.is_action_pressed("space") && g.game_state == 2:
+	if Input.is_action_pressed("space") && g.game_state == 1:
 		$start_wave.stop()
 		$start_wave.wait_time = 1
 		$start_wave.start()

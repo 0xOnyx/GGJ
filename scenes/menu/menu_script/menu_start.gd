@@ -2,7 +2,7 @@ extends Node2D
 
 func _on_but_start_pressed():
 	$son.play()
-	get_tree().change_scene("res://scenes/main.tscn") #Pour passer a la scene principale de jeu
+	$anim.play("change_scene")#Pour passer a la scene principale de jeu
 	g.nickname = $LineEdit.get_text()
 	if (g.nickname.length() == 0):
 		g.nickname = "Anonymus"

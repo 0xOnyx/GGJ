@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/menu/menu_script/menu_start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/option.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/menu/bkgtitle.png" type="Texture" id=7]
 [ext_resource path="res://assets/menu/button_tree.png" type="Texture" id=8]
 [ext_resource path="res://assets/fonts/Title.TTF" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/menukeys.png" type="Texture" id=10]
+[ext_resource path="res://assets/main_title-export.png" type="Texture" id=11]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -119,18 +121,18 @@ anims/idle = SubResource( 5 )
 
 [node name="but_start" type="Button" parent="."]
 margin_left = 802.0
-margin_top = 522.0
+margin_top = 516.0
 margin_right = 1118.0
-margin_bottom = 626.0
+margin_bottom = 620.0
 theme = ExtResource( 3 )
 text = "Play"
 icon_align = 1
 
 [node name="but_option" type="Button" parent="."]
 margin_left = 802.0
-margin_top = 652.0
+margin_top = 646.0
 margin_right = 1118.0
-margin_bottom = 756.0
+margin_bottom = 750.0
 theme = ExtResource( 3 )
 text = "option"
 icon_align = 1
@@ -151,18 +153,19 @@ stream = ExtResource( 5 )
 autoplay = true
 
 [node name="ButtonTree" type="Sprite" parent="."]
-position = Vector2( 960, 439 )
-scale = Vector2( 2.834, 1.809 )
+position = Vector2( 962.723, 938 )
+scale = Vector2( 2.6207, 2.84414 )
 texture = ExtResource( 8 )
 
 [node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 4, 500 )
 z_index = 2
 
 [node name="LineEdit" type="LineEdit" parent="."]
-margin_left = 792.0
-margin_top = 421.0
-margin_right = 1128.0
-margin_bottom = 462.0
+margin_left = 796.0
+margin_top = 905.0
+margin_right = 1132.0
+margin_bottom = 962.0
 custom_colors/cursor_color = Color( 0, 0, 0, 0 )
 custom_colors/font_color = Color( 0.101961, 0, 0, 1 )
 custom_fonts/font = SubResource( 6 )
@@ -171,7 +174,17 @@ custom_styles/focus = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
 align = 1
 max_length = 7
-placeholder_text = "Nickname"
+placeholder_text = "nickname"
+
+[node name="Menukeys" type="Sprite" parent="."]
+position = Vector2( 254, 843 )
+scale = Vector2( 3.95, 3.95 )
+texture = ExtResource( 10 )
+
+[node name="MainTitle-export" type="Sprite" parent="Menukeys"]
+position = Vector2( 172.405, -149.367 )
+scale = Vector2( 0.73487, 0.761686 )
+texture = ExtResource( 11 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
