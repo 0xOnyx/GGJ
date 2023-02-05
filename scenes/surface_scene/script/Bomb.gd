@@ -6,7 +6,7 @@ var exploded = true
 var direction = -1
 
 func f(x):
-	return  (x*x/150 - x * direction + c)
+	return  (x*x/100 - x * direction + c)
 
 func _ready():
 	c = position.y 
@@ -20,7 +20,7 @@ func _physics_process(delta):
 		return
 	position.y = f(position.x)
 	position.x+= to_add * direction
-	if (position.x >= 75):
+	if (position.x >= 50):
 		to_add+=0.04
 
 func shoot():

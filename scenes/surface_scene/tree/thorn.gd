@@ -5,6 +5,8 @@ var speed = 1900
 var direction = 1
 
 func _ready():
+	if global_position.x < 960:
+		direction = -1
 	vel.x = 1930 * direction
 	scale.x *= direction
 
