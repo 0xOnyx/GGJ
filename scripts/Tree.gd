@@ -52,14 +52,16 @@ func attack():
 		var instance = bomb.instance()
 		instance.position.y = -45
 		instance.direction = direction
-		add_child(instance)
+#		add_child(instance)
+		call_deferred("add_child", instance)
 		instance.shoot()
 
 	if type == Type.GUN and $Buff.is_stopped():
 		$Buff.start()
 		var instance = thorn.instance()
 		instance.direction = direction
-		add_child(instance)
+#		add_child(instance)
+		call_deferred("add_child", instance)
 	if type == Type.MAIN and $Buff.is_stopped():
 		$Buff.start()
 		if attacked and targets.size() > 0:
