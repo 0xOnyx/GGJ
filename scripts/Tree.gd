@@ -22,7 +22,7 @@ func _ready():
 		$HP.visible = false
 		$TreeLife.visible = true
 	$DefenseArea.position.x *= direction
-	$Willow/WillowTreeAttackSheet.flip_h = direction == -1
+	$Willow/WillowTreeAttackSheet.flip_h = direction
 
 func _physics_process(delta):
 	if type == Type.MAIN && g.loose:
@@ -76,11 +76,12 @@ func _on_Area2D_area_entered(area):
 	pass # Replace with function body.	
 
 func _on_DefenseArea_area_entered(area):
+	direction = -1#Il faudrait faire ça s'il n'est pas déjà encore entrain d'attaquer
+	$Willow/WillowTreeAttackSheet.flip_h = direction
 	if not targets.has(area.get_parent()) and "Enemy" in area.get_parent().name:
 		targets.append(area.get_parent())
 	if "Enemy" in area.get_parent().name:
 		attack()
-
 
 func _on_Enemy_Killed(e):
 	print(true)
@@ -92,6 +93,17 @@ func _on_Buff_timeout():
 	if not targets.empty():
 		attack()
 
-
 func _on_DefenseArea_area_exited(area):
+	targets.erase(area)
+
+func _on_DefenseArea_droite_area_entered(area):
+	direction = 1 #Il faudrait faire ça s'il n'est pas déjà encore entrain d'attaquer
+	$Willow/WillowTreeAttackSheet.flip_h = direction
+	if not targets.has(area.get_parent()) and "Enemy" in area.get_parent().name:
+		targets.append(area.get_parent())
+	if "Enemy" in area.get_parent().name:
+		attack()
+
+
+func _on_DefenseArea_droite_area_exited(area):
 	targets.erase(area)
