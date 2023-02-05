@@ -12,11 +12,14 @@ var velocity = Vector2()
 var rotation_dir = 0
 var rot_limit = PI/16 # in radians, PI is 180 deg
 
+var rot
+
 func _ready():
 	if connect("on_death", get_parent().get_parent(), "_death_signal_recieved"):
 		print("camera stuff")
 	$"%Camera2D".make_current()
 	print("player pos", position)
+	rot = rotation
 
 func get_input():
 	rotation_dir = 0
@@ -40,8 +43,12 @@ func _physics_process(delta):
 	
 	get_input()
 	velocity = Vector2(-g.root_speed, 0).rotated(rotation)
-	rotation += rotation_dir * rotation_speed * delta
-	rotation = clamp(rotation, -PI+rot_limit, -rot_limit)
+	rot += rotation_dir * rotation_speed * delta
+	rot = clamp(rot, -PI+rot_limit, -rot_limit)
+	print("bef: ", rot)
+	rotation = stepify(rot, PI/8)
+#	rotation = rot
+	print("aft: ", rotation)
 	velocity = move_and_slide(velocity)
 	var points_count = path_line.points.size()
 	if (points_count > 1):
